@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criar paciente</title>
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <link rel="stylesheet" href="../assets/css/criar_paciente.css" />
+      <link rel="stylesheet" href="../assets/css/integracao.css">
+</head>
+  <body>
+    <header class="topbar">
+      <button onclick="history.back()"  class="back-btn" type="button" aria-label="Voltar">← Voltar</button>
+    </header>
+
+    <main class="page-shell">
+      <section class="patient-form" aria-label="Cadastro de paciente">
+        <h1>Insira informações do paciente</h1><p>Etapa 1 de 3 · Dados pessoais</p>
+
+        <form id="patientForm">
+          <div class="form-content">
+            <div class="field-group">
+              <input class="form-input" id="nome" type="text" placeholder="nome" aria-label="Nome" required />
+              <input class="form-input" id="dataNascimento" type="date" placeholder="data de nascimento" aria-label="Data de nascimento" required />
+              <input class="form-input" id="email" type="email" placeholder="email" aria-label="Email" required />
+              <input class="form-input" id="celular" type="tel" placeholder="celular" aria-label="Celular" required />
+            </div>
+
+            <label class="photo-box" for="foto-paciente" aria-label="Adicionar foto do paciente">
+              <span>Foto</span>
+              <input id="foto-paciente" type="file" accept="image/*" />
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="next-btn" type="submit">Continuar</button>
+          </div>
+        <p id="pagina-erro" class="api-mensagem" hidden></p>
+        </form>
+      </section>
+    </main>
+      <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/paciente.js"></script>
+    <script src="../assets/js/tema.js"></script>
+</body>
+</html>

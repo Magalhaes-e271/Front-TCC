@@ -1,0 +1,17 @@
+[hidden] { display: none !important; }
+.api-mensagem { margin: 1rem 0; line-height: 1.5; color: #b12626; }
+.api-mensagem[data-tipo="sucesso"], .api-mensagem[data-tipo="info"] { color: #264c79; }
+button:disabled { opacity: .55; cursor: wait; }
+.api-form { display: grid; gap: 1rem; margin: 1.5rem 0; padding: 1.5rem; background: #fff; border-radius: 15px; }
+.api-form label { display: grid; gap: .5rem; font-weight: 600; }
+.api-form input, .api-form select, .api-form textarea { width: 100%; padding: .8rem; border: 1px solid #bbc6d6; border-radius: 8px; font: inherit; }
+.api-form textarea { min-height: 100px; }
+.api-btn { background: #3c5ae1; border: 0; border-radius: 8px; color: #fff; padding: .75rem 1rem; cursor: pointer; font: inherit; }
+.api-btn.secundario { background: #e2e8f1; color: #1a1a2e; }
+.api-acoes { display: flex; gap: .75rem; flex-wrap: wrap; margin: .75rem 0; }
+.api-lista { display: grid; gap: 1rem; margin: 1rem 0; }
+.api-item { background: #fff; border-radius: 12px; padding: 1.25rem; display: grid; gap: .75rem; }
+.professional-option { padding: .75rem; flex-wrap: wrap; }
+.professional-option input { position: static; opacity: 1; pointer-events: auto; width: 20px; height: 20px; }
+.profile-image { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.patient-avatar img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }

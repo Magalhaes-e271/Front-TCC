@@ -1,0 +1,208 @@
+@import url('../css/global.css');
+
+:root {
+  --page-bg: var(--cor-fundo);
+  --bar-bg: var(--cor-footer);
+  --panel-bg: var(--cor-card);
+  --field-bg: var(--cor-branco);
+  --field-border: var(--cor-borda);
+  --text-main: var(--cor-texto);
+  --text-soft: var(--cor-texto-suave);
+  --button-bg: var(--cor-primaria);
+  --button-hover: var(--cor-primaria-hover);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--page-bg);
+  color: var(--text-main);
+  font-family: var(--fonte-base);
+}
+
+.topbar {
+  height: 62px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  background: var(--bar-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--cor-branco);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: var(--raio-input);
+  padding: 0.45rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--transicao-rapida);
+}
+
+.back-btn:hover {
+  opacity: 0.9;
+}
+
+.page-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 42px 32px 54px;
+}
+
+.patient-form {
+  width: 100%;
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+}
+
+.patient-form h1 {
+  margin: 0 0 28px;
+  color: var(--text-main);
+  font-size: clamp(2rem, 2vw, 2.5rem);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.form-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: clamp(90px, 12vw, 170px);
+  flex: 1;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: min(100%, 520px);
+  justify-content: center;
+}
+
+.form-input {
+  width: 100%;
+  height: 68px;
+  padding: 0 18px;
+  border: 2px solid var(--field-border);
+  border-radius: var(--raio-input);
+  background: var(--field-bg);
+  color: var(--text-main);
+  font-size: 1.1rem;
+  outline: none;
+  transition: border-color var(--transicao-rapida), box-shadow var(--transicao-rapida);
+}
+
+.form-input::placeholder {
+  color: var(--text-soft);
+}
+
+.form-input:focus {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 2px rgba(60, 90, 225, 0.15);
+}
+
+.photo-box {
+  width: 440px;
+  height: calc(4 * 68px + 3 * 28px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--field-border);
+  border-radius: var(--raio-card);
+  background: var(--panel-bg);
+  color: var(--text-main);
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 0;
+  align-self: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transicao-rapida), box-shadow var(--transicao-rapida), transform var(--transicao-rapida);
+}
+
+.photo-box:hover {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 2px rgba(60, 90, 225, 0.12);
+  transform: translateY(-1px);
+}
+
+.photo-box input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.photo-box span {
+  pointer-events: none;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.next-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  min-width: 170px;
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: var(--raio-botao);
+  background: var(--button-bg);
+  color: var(--cor-branco);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transicao-rapida), transform var(--transicao-rapida);
+}
+
+.next-btn:hover {
+  background: var(--button-hover);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 760px) {
+  .page-shell {
+    padding: 26px 18px 42px;
+  }
+
+  .patient-form {
+    min-height: auto;
+  }
+
+  .form-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    margin-right: 50px;
+  }
+
+  .field-group {
+    width: 100%;
+  }
+
+  .photo-box {
+    width: 400px;
+    height: 220px;
+    margin-top: 0;
+  }
+
+  .actions {
+    justify-content: flex-end;
+  }
+}

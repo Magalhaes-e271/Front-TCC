@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meu perfil | OficinaAprender+</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/perfil.css">
+</head>
+
+<body>
+<main class="pagina-perfil">
+
+    <div class="barra-superior">
+        <a class="voltar" href="dashboard.html">
+            <span aria-hidden="true">←</span>
+            Voltar ao painel
+        </a>
+
+        <a class="marca" href="dashboard.html">
+            Oficina<span>Aprender+</span>
+        </a>
+    </div>
+
+    <header class="cabecalho-pagina">
+        <p class="sobretitulo">MINHA CONTA</p>
+
+        <h1 id="titulo-pagina">Dados pessoais e acesso</h1>
+
+        <p id="subtitulo-pagina">
+            Gerencie suas informações de cadastro na OficinaAprender+.
+        </p>
+    </header>
+
+    <div class="layout-perfil">
+
+        <aside class="menu-lateral">
+            <nav
+                    class="menu-perfil"
+                    role="tablist"
+                    aria-label="Seções do perfil"
+                    aria-orientation="vertical"
+            >
+                <button
+                        id="aba-pessoal"
+                        class="item-menu ativa"
+                        type="button"
+                        role="tab"
+                        data-secao="pessoal"
+                        aria-selected="true"
+                        aria-controls="secao-pessoal"
+                        tabindex="0"
+                >
+                    Dados pessoais e acesso
+                </button>
+
+                <button
+                        id="aba-profissional"
+                        class="item-menu"
+                        type="button"
+                        role="tab"
+                        data-secao="profissional"
+                        aria-selected="false"
+                        aria-controls="secao-profissional"
+                        tabindex="-1"
+                >
+                    Perfil profissional
+                </button>
+
+                <button
+                        id="aba-descricao"
+                        class="item-menu"
+                        type="button"
+                        role="tab"
+                        data-secao="descricao"
+                        aria-selected="false"
+                        aria-controls="secao-descricao"
+                        tabindex="-1"
+                >
+                    Descrição do perfil
+                </button>
+            </nav>
+        </aside>
+
+        <div class="coluna-conteudo">
+            <p
+                    id="pagina-erro"
+                    class="mensagem"
+                    role="status"
+                    aria-live="polite"
+                    hidden
+            ></p>
+
+            <button
+                    id="tentar-novamente"
+                    class="btn-secundario"
+                    type="button"
+                    hidden
+            >
+                Tentar novamente
+            </button>
+
+            <div id="conteudo-perfil" aria-busy="true" hidden>
+
+                <section
+                        id="secao-pessoal"
+                        class="secao-perfil"
+                        role="tabpanel"
+                        aria-labelledby="aba-pessoal"
+                        tabindex="0"
+                >
+                    <article class="cartao">
+                        <header class="cabecalho-cartao">
+                            <h2>Dados pessoais</h2>
+                        </header>
+
+                        <dl class="lista-dados">
+                            <div class="linha-dado linha-foto">
+                                <dt>Foto de perfil</dt>
+
+                                <dd class="valor valor-foto">
+                                    <img
+                                            id="foto-perfil"
+                                            src="../assets/icons/user-icon.png"
+                                            alt="Foto do seu perfil"
+                                            width="76"
+                                            height="76"
+                                    >
+                                </dd>
+                            </div>
+
+                            <div class="linha-dado">
+                                <dt>Nome completo</dt>
+                                <dd id="perfil-nome" class="valor">—</dd>
+
+                                <dd class="acao">
+                                    <a href="cadastro.html?editar=1">Alterar</a>
+                                </dd>
+                            </div>
+
+                            <div class="linha-dado">
+                                <dt>ID na OficinaAprender+</dt>
+                                <dd id="perfil-id" class="valor">—</dd>
+                            </div>
+
+                            <div class="linha-dado">
+                                <dt>CPF</dt>
+                                <dd id="perfil-cpf" class="valor">—</dd>
+
+                                <dd class="acao">
+                                    <a href="cadastro.html?editar=1">Alterar</a>
+                                </dd>
+                            </div>
+
+                            <div class="linha-dado">
+                                <dt>Data de nascimento</dt>
+                                <dd id="perfil-nascimento" class="valor">—</dd>
+
+                                <dd class="acao">
+                                    <a href="cadastro.html?editar=1">Alterar</a>
+                                </dd>
+                            </div>
+                        </dl>
+                    </article>
+
+                    <article class="cartao">
+                        <header class="cabecalho-cartao">
+                            <h2>Dados para acesso</h2>
+                            <p>Informações associadas à sua conta.</p>
+                        </header>
+
+                        <dl class="lista-dados">
+                            <div class="linha-dado">
+                                <dt>E-mail</dt>
+                                <dd id="perfil-email" class="valor">—</dd>
+                                <dd class="consulta">Usado no login</dd>
+                            </div>
+
+                            <div class="linha-dado">
+                                <dt>Número de celular</dt>
+                                <dd id="perfil-telefone" class="valor">—</dd>
+
+                                <dd class="acao">
+                                    <a href="cadastro.html?editar=1">Alterar</a>
+                                </dd>
+                            </div>
+
+                            <div class="linha-dado">
+                                <dt>Tipo de conta</dt>
+                                <dd id="perfil-tipo" class="valor">—</dd>
+                            </div>
+                        </dl>
+                    </article>
+                </section>
+
+                <section
+                        id="secao-profissional"
+                        class="secao-perfil"
+                        role="tabpanel"
+                        aria-labelledby="aba-profissional"
+                        tabindex="0"
+                        hidden
+                >
+                    <article class="cartao">
+                        <header class="cabecalho-cartao">
+                            <h2>Dados profissionais</h2>
+                            <p>Informações sobre sua atuação.</p>
+                        </header>
+
+                        <dl class="lista-dados">
+                            <div class="linha-dado">
+                                <dt>Ocupação</dt>
+                                <dd id="perfil-ocupacao" class="valor">—</dd>
+
+                                <dd class="acao">
+                                    <a href="cadastro.html?editar=1">Alterar</a>
+                                </dd>
+                            </div>
+
+                            <div class="linha-dado">
+                                <dt>Instituição</dt>
+                                <dd id="perfil-instituicao" class="valor">—</dd>
+
+                                <dd class="acao">
+                                    <a href="cadastro.html?editar=1">Alterar</a>
+                                </dd>
+                            </div>
+
+                            <div class="linha-dado">
+                                <dt>Horário de entrada</dt>
+                                <dd id="perfil-entrada" class="valor">—</dd>
+                            </div>
+
+                            <div class="linha-dado">
+                                <dt>Horário de saída</dt>
+                                <dd id="perfil-saida" class="valor">—</dd>
+                            </div>
+                        </dl>
+                    </article>
+                </section>
+
+                <section
+                        id="secao-descricao"
+                        class="secao-perfil"
+                        role="tabpanel"
+                        aria-labelledby="aba-descricao"
+                        tabindex="0"
+                        hidden
+                >
+                    <article class="cartao">
+                        <header class="cabecalho-cartao cabecalho-com-acao">
+                            <div>
+                                <h2>Sua apresentação</h2>
+                                <p>Um pouco sobre você e sua experiência.</p>
+                            </div>
+
+                            <a class="link-alterar" href="cadastro.html?editar=1">
+                                Alterar
+                            </a>
+                        </header>
+
+                        <div id="perfil-descricao" class="descricao-perfil"></div>
+                    </article>
+                </section>
+
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/utils.js"></script>
+<script src="../assets/js/meu-perfil.js"></script>
+<script src="../assets/js/tema.js"></script>
+</body>
+
+</html>

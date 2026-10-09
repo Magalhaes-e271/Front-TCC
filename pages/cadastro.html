@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | OficinaAprender+</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/cadastro.css">
+</head>
+<body>
+<main class="card boxMae">
+    <header class="card-header">
+        <a id="btn-voltar" class="btn-voltar" href="index.html" aria-label="Voltar ao início">←</a>
+        <a class="marca" href="index.html">Oficina<span>Aprender+</span></a>
+        <span class="selo">Perfil profissional</span>
+    </header>
+    <div class="introducao">
+        <p class="sobretitulo" id="sobretitulo">COMECE POR AQUI</p>
+        <h1 id="titulo-pagina">Crie sua conta</h1>
+        <p id="subtitulo-pagina">Seu cadastro e suas informações, em um só lugar.</p>
+    </div>
+    <ol class="etapas" aria-label="Etapas do formulário">
+        <li aria-current="step"><span class="numero">01</span><span>Dados pessoais</span></li>
+        <li><span class="numero">02</span><span>Perfil profissional</span></li>
+        <li><span class="numero">03</span><span>Revisão</span></li>
+    </ol>
+    <p id="progresso-etapa" class="sr-only" aria-live="polite">Etapa 1 de 3: Dados pessoais</p>
+    <form id="form-cadastro" novalidate>
+        <section class="parte ativa" id="parte-pessoal" aria-labelledby="titulo-pessoal">
+            <div class="cabecalho-parte">
+                <h2 id="titulo-pessoal" tabindex="-1">Vamos nos conhecer</h2>
+                <p>Preencha seus dados pessoais e de acesso. Os campos com * são obrigatórios.</p>
+            </div>
+            <div class="campos">
+                <div class="campo inteiro"><input id="nome" name="nome" type="text" autocomplete="name" maxlength="255"
+                                                  placeholder=" " required aria-describedby="erro-nome"><label
+                        for="nome">Nome completo *</label><span class="erro-campo" id="erro-nome"></span></div>
+                <div class="campo"><input id="email" name="email" type="email" autocomplete="email" maxlength="255"
+                                          placeholder=" " required aria-describedby="erro-email"><label for="email">E-mail
+                    *</label><span class="erro-campo" id="erro-email"></span></div>
+                <div class="campo"><input id="celular" name="celular" type="tel" autocomplete="tel" maxlength="15"
+                                          placeholder=" " required aria-describedby="erro-celular"><label for="celular">Celular
+                    com DDD *</label><span class="erro-campo" id="erro-celular"></span></div>
+                <div class="campo"><input id="cpf" name="cpf" type="text" inputmode="numeric" maxlength="14"
+                                          placeholder=" " required aria-describedby="erro-cpf"><label for="cpf">CPF
+                    *</label><span class="erro-campo" id="erro-cpf"></span></div>
+                <div class="campo campo-data"><input id="dataNascimento" name="dataNascimento" type="date"
+                                                     autocomplete="bday" min="1900-01-01" required
+                                                     aria-describedby="erro-dataNascimento"><label for="dataNascimento">Data
+                    de nascimento *</label><span class="erro-campo" id="erro-dataNascimento"></span></div>
+                <div class="campo acesso"><input id="senha" name="senha" type="password" autocomplete="new-password"
+                                                 placeholder=" " required
+                                                 aria-describedby="senha-ajuda erro-senha"><label for="senha">Criar
+                    senha *</label>
+                    <button type="button" class="toggle-senha" id="toggle-senha" aria-controls="senha">◉</button>
+                    <span class="erro-campo" id="erro-senha"></span></div>
+                <div class="campo acesso"><input id="confirm-senha" name="confirm-senha" type="password"
+                                                 autocomplete="new-password" placeholder=" " required
+                                                 aria-describedby="erro-confirm-senha"><label for="confirm-senha">Confirmar
+                    senha *</label>
+                    <button type="button" class="toggle-senha" id="toggle-confirm-senha" aria-controls="confirm-senha">
+                        ◉
+                    </button>
+                    <span class="erro-campo" id="erro-confirm-senha"></span></div>
+            </div>
+            <div class="forca-senha acesso">
+                <div class="barra">
+                    <div class="progresso"></div>
+                </div>
+                <p id="senha-ajuda">Use ao menos 8 caracteres, com maiúscula, minúscula, número e símbolo.</p>
+                <span class="texto-forca" aria-live="polite">Digite uma senha</span>
+            </div>
+            <p class="nota-edicao" id="nota-edicao" hidden>Seu e-mail é usado no login. Esta página edita os dados do
+                perfil.</p>
+        </section>
+        <section class="parte" id="parte-profissional" aria-labelledby="titulo-profissional" hidden>
+            <div class="cabecalho-parte">
+                <h2 id="titulo-profissional" tabindex="-1">Conte sobre seu trabalho</h2>
+                <p>Estas informações farão parte do seu perfil na OficinaAprender+.</p>
+            </div>
+            <div class="campos">
+                <div class="campo"><input id="ocupacao" name="ocupacao" type="text" maxlength="255"
+                                          autocomplete="organization-title" placeholder=" " required
+                                          aria-describedby="erro-ocupacao"><label for="ocupacao">Ocupação *</label><span
+                        class="erro-campo" id="erro-ocupacao"></span></div>
+                <div class="campo"><input id="instituicao" name="instituicao" type="text" maxlength="255"
+                                          autocomplete="organization" placeholder=" " required
+                                          aria-describedby="erro-instituicao"><label for="instituicao">Instituição
+                    *</label><span class="erro-campo" id="erro-instituicao"></span></div>
+                <div class="campo campo-data">
+                    <input
+                            id="horarioTrabalho"
+                            name="horarioTrabalho"
+                            type="time"
+                            required
+                            aria-describedby="erro-horarioTrabalho"
+                    >
+                    <label for="horarioTrabalho">Horário de entrada *</label>
+                    <span class="erro-campo" id="erro-horarioTrabalho"></span>
+                </div>
+
+                <div class="campo campo-data">
+                    <input
+                            id="horarioDeSaida"
+                            name="horarioDeSaida"
+                            type="time"
+                            required
+                            aria-describedby="erro-horarioDeSaida"
+                    >
+                    <label for="horarioDeSaida">Horário de saída *</label>
+                    <span class="erro-campo" id="erro-horarioDeSaida"></span>
+                </div>
+
+                <div class="campo inteiro">
+  <textarea
+          id="descricao"
+          name="descricao"
+          rows="5"
+          minlength="10"
+          placeholder=" "
+          required
+          aria-describedby="erro-descricao"
+  ></textarea>
+                    <label for="descricao">Descrição do perfil *</label>
+                    <span class="erro-campo" id="erro-descricao"></span>
+                </div>
+            </div>
+            <div class="photo-section">
+                <img id="photoPreview" src="../assets/icons/user-icon.png" alt="Prévia da foto do perfil" width="76"
+                     height="76">
+                <div class="foto-conteudo">
+                    <label class="foto-label" for="foto">Foto de perfil <span>(opcional)</span></label>
+                    <p id="foto-ajuda">PNG, JPEG ou GIF. Até 10 MB.</p>
+                    <input id="foto" name="foto" type="file" accept="image/png,image/jpeg,image/gif"
+                           aria-describedby="foto-ajuda erro-foto">
+                    <button type="button" id="remover-foto" class="link-botao" hidden>Remover seleção</button>
+                    <span id="erro-foto" class="erro-campo"></span>
+                </div>
+            </div>
+        </section>
+        <section class="parte" id="parte-revisao" aria-labelledby="titulo-revisao" hidden>
+            <div class="cabecalho-parte">
+                <h2 id="titulo-revisao" tabindex="-1">Tudo certo para começar?</h2>
+                <p>Confira suas informações. Você pode voltar e ajustar qualquer campo.</p>
+            </div>
+            <div class="resumos">
+                <div class="resumo"><h3>Dados pessoais</h3>
+                    <dl id="resumo-pessoal"></dl>
+                </div>
+                <div class="resumo"><h3>Perfil profissional</h3>
+                    <dl id="resumo-profissional"></dl>
+                </div>
+            </div>
+            <div class="confirmacao">
+                <label for="conferido"><input id="conferido" name="conferido" type="checkbox" required
+                                              aria-describedby="erro-conferido"> <span>Conferi as informações preenchidas. *</span></label>
+                <span id="erro-conferido" class="erro-campo"></span>
+            </div>
+            <p class="nota-envio" id="nota-envio">Ao concluir, sua conta e seu perfil serão salvos no servidor.</p>
+        </section>
+        <p id="pagina-erro" class="api-mensagem" tabindex="-1" role="alert" hidden></p>
+        <div class="acoes">
+            <button type="button" id="btn-anterior" class="btn-secundario" hidden>← Voltar</button>
+            <span class="contador" id="contador">Etapa 1 de 3</span>
+            <button type="submit" id="btn-cadastrar" class="btn-primario">Continuar →</button>
+        </div>
+        <button type="button" id="concluir-sem-foto" class="link-botao sem-foto" hidden>Concluir sem enviar a foto
+        </button>
+    </form>
+    <footer class="card-footer" id="rodape-cadastro">Já possui uma conta? <a href="login.html">Entrar</a></footer>
+</main>
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/utils.js"></script>
+<script src="../assets/js/cadastro.js"></script>
+<script src="../assets/js/tema.js"></script>
+</body>
+</html>

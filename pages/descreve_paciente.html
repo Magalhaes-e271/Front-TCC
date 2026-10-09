@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Descreve paciente</title>
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <link rel="stylesheet" href="../assets/css/descreve_paciente.css" />
+      <link rel="stylesheet" href="../assets/css/integracao.css">
+</head>
+  <body>
+    <header class="topbar">
+      <button class="back-btn" type="button" onclick="history.back()" aria-label="Voltar">← Voltar</button>
+    </header>
+
+    <main class="page-shell">
+      <section aria-label="Descreva o paciente">
+        <h1>Descreva o paciente</h1><p>Etapa 2 de 3 · Condições e dificuldades</p><form id="describePatientForm">
+          <div class="field-block">
+            <label class="field-label" for="condicao">Sintetize as condições do usuário (ex.: dificuldades, autismo, TDH...)</label>
+            <input class="input-box" id="condicao" name="condicao" type="text" placeholder="Condição" required />
+          </div>
+
+          <div class="field-block">
+            <label class="field-label" for="problemas">Descreva os problemas enfrentados pelo paciente</label>
+            <textarea class="editor-box" id="problemas" name="problemas" placeholder="Problemas" required></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="next-btn" type="submit">Continuar</button>
+          </div>
+        <p id="pagina-erro" class="api-mensagem" hidden></p>
+        </form>
+      </section>
+    </main>
+      <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/paciente.js"></script>
+    <script src="../assets/js/tema.js"></script>
+</body>
+</html>

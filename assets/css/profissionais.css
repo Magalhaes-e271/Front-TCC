@@ -1,0 +1,494 @@
+/* Conteúdo principal */
+
+.profissionais-page {
+  min-width: 0;
+  padding: 38px 36px 24px;
+}
+
+.profissionais-page .conteudo-pagina {
+  min-width: 0;
+}
+
+.profissionais-page .introducao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+
+  margin-bottom: 30px;
+}
+
+.profissionais-page .introducao > div {
+  min-width: 0;
+}
+
+.profissionais-page .introducao .btn-primario {
+  flex-shrink: 0;
+}
+
+/* Abas e atualização */
+
+.barra-abas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  margin-bottom: 26px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.abas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.aba {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 11px 14px;
+
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background: var(--branco);
+  color: var(--suave);
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+
+  transition:
+          background-color var(--transicao-rapida),
+          border-color var(--transicao-rapida);
+}
+
+.aba:hover {
+  border-color: #b9c9ff;
+  background: #f7faff;
+  color: var(--azul);
+}
+
+.aba.ativa {
+  border-color: var(--azul);
+  background: var(--azul);
+  color: var(--branco);
+  box-shadow: var(--sombra-botao);
+}
+
+.contador-aba {
+  display: inline-grid;
+  place-items: center;
+
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+
+  border-radius: 11px;
+  background: #eef2ff;
+  color: var(--azul);
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.aba.ativa .contador-aba {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--branco);
+}
+
+.barra-abas > .btn-secundario {
+  flex-shrink: 0;
+  padding: 11px 14px;
+  font-size: 12px;
+}
+
+/* Cabeçalho da lista e pesquisa */
+
+.painel-lista {
+  min-width: 0;
+}
+
+.profissionais-page .cabecalho-lista {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.profissionais-page .cabecalho-lista h2 {
+  margin: 0 0 7px;
+
+  font-family: var(--fonte-titulo);
+  font-size: 23px;
+  line-height: 1.4;
+}
+
+.profissionais-page .cabecalho-lista p {
+  margin: 0;
+  color: var(--suave);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.campo-busca {
+  position: relative;
+  width: min(100%, 280px);
+  min-width: 0;
+}
+
+.campo-busca input {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 14px 12px 42px;
+
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background: #f7faff;
+  color: var(--texto);
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.campo-busca input::placeholder {
+  color: #939daf;
+}
+
+.campo-busca input:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px rgba(60, 90, 225, 0.12);
+}
+
+.campo-busca svg {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+
+  fill: none;
+  stroke: var(--suave);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.profissionais-page .api-mensagem {
+  margin: 0 0 22px;
+}
+
+/* Cartões de profissionais */
+
+.lista-profissionais {
+  display: grid;
+  gap: 18px;
+}
+
+.cartao-profissional {
+  min-width: 0;
+  padding: 22px;
+
+  border: 1px solid var(--borda);
+  border-radius: 20px;
+  background: var(--branco);
+  box-shadow: 0 8px 24px rgba(26, 26, 46, 0.035);
+}
+
+.cabecalho-profissional {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e7edf6;
+}
+
+.foto-profissional {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+
+  border: 3px solid var(--branco);
+  border-radius: 50%;
+  background: var(--fundo);
+  color: var(--azul);
+
+  object-fit: cover;
+  box-shadow: 0 0 0 1px var(--borda);
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.foto-profissional img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.identidade-profissional {
+  min-width: 0;
+}
+
+.nome-profissional {
+  margin: 0 0 6px;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.ocupacao-profissional {
+  margin: 0;
+  color: var(--suave);
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.status-profissional {
+  justify-self: end;
+  padding: 6px 10px;
+
+  border-radius: 20px;
+  background: #edf8f1;
+  color: #31794e;
+
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.status-profissional.pendente {
+  background: #fff7e5;
+  color: #946514;
+}
+
+.dados-profissional {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0 0;
+}
+
+.dados-profissional > div {
+  min-width: 0;
+  padding: 12px 14px;
+
+  border: 1px solid #e6edf7;
+  border-radius: 12px;
+  background: #f7faff;
+}
+
+.dados-profissional dt {
+  margin-bottom: 6px;
+  color: var(--suave);
+  font-size: 11px;
+}
+
+.dados-profissional dd {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.acoes-solicitacao {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--borda);
+}
+
+.acoes-solicitacao button {
+  padding: 11px 15px;
+  font-size: 12px;
+}
+
+/* Estado vazio */
+
+.estado-vazio {
+  padding: 36px 24px;
+
+  border: 1px dashed var(--borda);
+  border-radius: 20px;
+  background: #fafcff;
+
+  text-align: center;
+}
+
+.icone-vazio {
+  display: grid;
+  place-items: center;
+
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+
+  border-radius: 20px;
+  background: #eef2ff;
+  color: var(--azul);
+}
+
+.icone-vazio svg {
+  width: 30px;
+  height: 30px;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.estado-vazio h2,
+.estado-vazio h3 {
+  margin: 0 0 10px;
+
+  font-family: var(--fonte-titulo);
+  font-size: 23px;
+  line-height: 1.4;
+}
+
+.estado-vazio p {
+  max-width: 420px;
+  margin: 0 auto;
+
+  color: var(--suave);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.estado-vazio .btn-primario,
+.estado-vazio .btn-secundario {
+  margin-top: 20px;
+}
+
+/* Rodapé */
+
+.rodape-pagina {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--borda);
+
+  color: var(--suave);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.rodape-pagina a {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Responsividade */
+
+@media (max-width: 1050px) {
+  .profissionais-page {
+    padding: 30px 26px 24px;
+  }
+
+  .profissionais-page .introducao {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .barra-abas {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 760px) {
+  .profissionais-page {
+    padding: 28px 22px 22px;
+  }
+
+  .profissionais-page .cabecalho-lista {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .campo-busca {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .profissionais-page {
+    padding: 26px 18px 20px;
+  }
+
+  .barra-abas {
+    flex-direction: column;
+  }
+
+  .abas {
+    width: 100%;
+  }
+
+  .aba {
+    flex: 1 1 auto;
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .cartao-profissional {
+    padding: 18px;
+  }
+
+  .cabecalho-profissional {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .foto-profissional {
+    width: 48px;
+    height: 48px;
+  }
+
+  .status-profissional {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .dados-profissional {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .acoes-solicitacao button {
+    flex: 1;
+  }
+
+  .rodape-pagina {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

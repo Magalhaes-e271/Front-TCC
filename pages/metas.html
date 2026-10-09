@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metas | Oficina Aprender+</title>
+    <link rel="stylesheet" href="../assets/css/metas.css">
+    <link rel="stylesheet" href="../assets/css/integracao.css">
+</head>
+<body>
+
+    <nav>
+        <button id="btnVoltar">&leftarrow; Voltar</button>
+    </nav>
+
+    <!-- ----- informações do paciente ----- -->
+    <div class="paciente-collapsed" id="paciente-area">
+        <div class="principal">
+            <img id="foto-perfil" alt="Foto do paciente">
+            <div class="txt-principal">
+                <span id="nome-idade"></span>
+                <span id="condicoes"></span>
+            </div>
+        </div>
+        <div class="descricao-paciente-container">
+            <p id="descricao-paciente" class="descricao-paciente-collapsed"></p>
+            <div class="gradient"></div>
+            <button class="expand-desc-pac" id="expand-descricao">v v v</button>
+        </div>
+    </div>
+
+    <p id="pagina-erro" class="api-mensagem" hidden></p>
+    <details class="metas-container" id="nova-meta-area">
+      <summary>Adicionar meta</summary>
+      <form class="api-form" id="nova-meta-form">
+        <label>Título<input id="meta-titulo" maxlength="150" required></label>
+        <label>Área<input id="meta-area" maxlength="100" required></label>
+        <label>Descrição<textarea id="meta-descricao" required></textarea></label>
+        <label>Metas anteriores (opcional)<select id="meta-anteriores" multiple aria-describedby="anteriores-ajuda"></select></label>
+        <p id="anteriores-ajuda">No computador, use Ctrl para selecionar várias metas.</p>
+        <button class="api-btn" type="submit">Salvar meta</button>
+      </form>
+    </details>
+    <button class="api-btn secundario" id="recarregar" type="button">Atualizar metas</button>
+    <!-- ----- metas ----- -->
+    <div class="metas-container">
+        <div class="metas-header">
+            <h2><u>Metas</u></h2>
+            <span id="areas-resumo">Todas as áreas</span>
+            <div class="areas-filtro" id="areas-filtro">
+                <button class="areas" id="btn-areas" type="button" aria-haspopup="true" aria-expanded="false">Selecionar área</button>
+                <div class="areas-menu" id="areas-menu" hidden></div>
+            </div>
+        </div>
+
+        <div class="metas" id="metas-area">
+            <div class="metas-canvas" id="metas-canvas">
+                <svg class="metas-linhas" id="metas-linhas" aria-hidden="true">
+                    <defs>
+                        <marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                            <path d="M0 0 L10 5 L0 10 z" fill="currentColor"></path>
+                        </marker>
+                    </defs>
+                </svg>
+                <p class="metas-vazio" id="metas-vazio" hidden>Nenhuma meta para mostrar.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ----- meta expandida (tela cheia) ----- -->
+    <div class="overlay" id="overlay-meta" hidden>
+        <div class="modal meta-expandida" id="meta-expandida" role="dialog" aria-modal="true" aria-labelledby="meta-exp-titulo">
+            <button class="btn btn-fechar" id="fechar-meta" type="button" aria-label="Fechar meta">&times;</button>
+            <div class="meta-exp-corpo">
+                <div class="titulo-meta">
+                    <h2 id="meta-exp-titulo"></h2>
+                    <span id="meta-exp-area"></span>
+                </div>
+                <div class="meta-exp-descricao" id="meta-exp-descricao"></div>
+                <div class="meta-exp-acoes">
+                    <button class="btn" id="btn-add-postagem" type="button">Adicionar postagem</button>
+                    <button class="btn" id="btn-concluir" type="button">Marcar como concluído</button>
+                </div>
+                <div class="lista-postagens" id="lista-postagens"></div>
+                <p class="postagens-vazio" id="postagens-vazio" hidden>Nenhuma postagem ainda.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ----- formulário de postagem ----- -->
+    <div class="overlay overlay-form" id="overlay-form" hidden>
+        <form class="modal form-postagem" id="form-postagem" role="dialog" aria-modal="true" aria-labelledby="form-contexto">
+            <button class="btn btn-fechar" id="fechar-form" type="button" aria-label="Fechar formulário">&times;</button>
+            <span class="form-contexto" id="form-contexto"></span>
+            <div class="form-linha">
+                <input class="campo" id="post-titulo" name="titulo" placeholder="Título" maxlength="150" required>
+                <select class="campo" id="post-tipo" name="tipo" required></select><select class="campo" id="post-visibilidade" aria-label="Visibilidade"><option value="TODOS">Todos os envolvidos</option><option value="PROFISSIONAIS">Somente profissionais</option></select>
+            </div>
+            <textarea class="campo" id="post-conteudo" name="conteudo" placeholder="Conteúdo" required></textarea>
+            <ul class="lista-anexos" id="lista-anexos"></ul>
+            <p class="form-erro" id="form-erro" role="alert"></p>
+            <div class="form-acoes">
+                <input type="file" id="input-anexos" multiple hidden>
+                <button class="btn" id="btn-anexar" type="button">Anexar arquivo</button>
+                <button class="btn" id="btn-enviar" type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/metas.js"></script>
+    <script src="../assets/js/tema.js"></script>
+</body>
+</html>

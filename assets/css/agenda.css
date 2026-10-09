@@ -1,0 +1,595 @@
+/* Cabeçalho e estrutura */
+
+.agenda-page {
+    padding: 36px 32px 24px;
+}
+
+.agenda-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.agenda-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.agenda-acoes .btn-primario,
+.agenda-acoes .btn-secundario {
+    padding: 12px 15px;
+    font-size: 12px;
+}
+
+.agenda-page > .api-mensagem {
+    margin: 0 0 22px;
+}
+
+.agenda-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 22px;
+}
+
+.calendario-painel,
+.dia-painel {
+    min-width: 0;
+    padding: 22px;
+
+    border: 1px solid var(--borda);
+    border-radius: 20px;
+    background: var(--branco);
+}
+
+/* Navegação do calendário */
+
+.calendario-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.calendario-header h2 {
+    margin: 0;
+
+    font-family: var(--fonte-titulo);
+    font-size: 22px;
+    line-height: 1.4;
+}
+
+.calendario-header h2::first-letter {
+    text-transform: uppercase;
+}
+
+.navegacao-mes {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.navegacao-mes .botao-icone {
+    width: 34px;
+    height: 34px;
+
+    border-color: var(--borda);
+    border-radius: 10px;
+    color: var(--suave);
+}
+
+.navegacao-mes .botao-icone:hover {
+    border-color: var(--azul);
+    color: var(--azul);
+}
+
+.calendario-filtro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin: 18px 0 24px;
+    color: var(--suave);
+    font-size: 12px;
+}
+
+.botao-hoje {
+    padding: 7px 13px;
+
+    border: 1px solid #d8e2ff;
+    border-radius: 10px;
+    background: #eef2ff;
+    color: var(--azul);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.botao-hoje:hover {
+    border-color: #b9c9ff;
+    background: #e4ebff;
+}
+
+/* Dias do mês */
+
+.dias-semana,
+.calendario-dias {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+}
+
+.dias-semana {
+    margin-bottom: 12px;
+
+    color: var(--suave);
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.dia-calendario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    min-width: 0;
+    min-height: 48px;
+    aspect-ratio: 1;
+    padding: 5px;
+
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: #f7faff;
+    color: var(--texto);
+}
+
+.dia-calendario:hover {
+    border-color: #b9c9ff;
+    background: #edf2ff;
+}
+
+.numero-dia {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.dia-calendario.outro-mes {
+    background: #fafbfe;
+    color: #9aa4b6;
+}
+
+.dia-calendario.hoje {
+    border-color: var(--azul);
+}
+
+.dia-calendario.selecionado {
+    border-color: var(--azul);
+    background: var(--azul);
+    color: var(--branco);
+    box-shadow: 0 5px 12px rgba(60, 90, 225, 0.18);
+}
+
+.marcador-dia {
+    display: grid;
+    place-items: center;
+
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+
+    border-radius: 8px;
+    background: #e2e9ff;
+    color: var(--azul);
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.selecionado .marcador-dia {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--branco);
+}
+
+.legenda-calendario {
+    margin: 22px 0 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--borda);
+
+    color: var(--suave);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+/* Atendimentos do dia */
+
+.dia-header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--borda);
+}
+
+.dia-header .sobretitulo {
+    margin-bottom: 10px;
+    font-size: 10px;
+}
+
+.dia-header h2 {
+    margin: 0 0 12px;
+
+    font-family: var(--fonte-titulo);
+    font-size: 23px;
+    line-height: 1.4;
+}
+
+.dia-header h2::first-letter {
+    text-transform: uppercase;
+}
+
+.contador-dia {
+    display: inline-block;
+    padding: 6px 11px;
+
+    border-radius: 20px;
+    background: #eef2ff;
+    color: var(--azul);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.estado-dia {
+    margin: 22px 0 0;
+    padding: 24px 18px;
+
+    border: 1px dashed var(--borda);
+    border-radius: 16px;
+    background: #fafcff;
+
+    color: var(--suave);
+    font-size: 13px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.agenda-lista {
+    display: grid;
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.agenda-lista:empty {
+    margin-top: 0;
+}
+
+.cartao-atendimento {
+    min-width: 0;
+    padding: 18px;
+
+    border: 1px solid #e0e7f4;
+    border-radius: 16px;
+    background: #f7faff;
+}
+
+.horario-atendimento {
+    margin: 0 0 10px;
+
+    color: var(--azul);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+.titulo-atendimento {
+    margin: 0 0 8px;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.paciente-atendimento {
+    margin: 0;
+    color: var(--suave);
+    font-size: 12px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.observacoes-atendimento {
+    margin: 14px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--borda);
+
+    color: #526077;
+    font-size: 13px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.cancelar-atendimento {
+    margin-top: 16px;
+    padding: 4px 0;
+
+    border: 0;
+    background: transparent;
+    color: #a34b4b;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.cancelar-atendimento:hover {
+    color: var(--erro);
+    text-decoration: underline;
+}
+
+.agenda-rodape {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--borda);
+
+    color: var(--suave);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+/* Janela de agendamento */
+
+.modal-agendamento {
+    width: min(620px, calc(100% - 32px));
+    max-height: calc(100vh - 40px);
+    max-height: calc(100dvh - 40px);
+    padding: 0;
+    overflow-y: auto;
+
+    border: 1px solid var(--borda);
+    border-radius: 24px;
+    background: var(--branco);
+    color: var(--texto);
+    box-shadow: 0 24px 80px rgba(26, 26, 46, 0.2);
+}
+
+.modal-agendamento::backdrop {
+    background: rgba(26, 26, 46, 0.45);
+    backdrop-filter: blur(4px);
+}
+
+.formulario-agenda {
+    padding: 28px;
+}
+
+.formulario-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.formulario-header .sobretitulo {
+    margin-bottom: 10px;
+    font-size: 10px;
+}
+
+.formulario-header h2 {
+    margin: 0;
+
+    font-family: var(--fonte-titulo);
+    color: var(--azul);
+    font-size: 28px;
+    font-style: italic;
+    line-height: 1.3;
+}
+
+.fechar-modal {
+    width: 34px;
+    height: 34px;
+    border-color: var(--borda);
+    border-radius: 10px;
+}
+
+.formulario-introducao {
+    margin: 14px 0 24px;
+    color: var(--suave);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.formulario-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.campo-agenda {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 0;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.campo-inteiro {
+    grid-column: 1 / -1;
+}
+
+.campo-opcional {
+    color: var(--suave);
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.campo-agenda input,
+.campo-agenda select,
+.campo-agenda textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 13px;
+
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    background: #f7faff;
+    color: var(--texto);
+
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.campo-agenda input::placeholder,
+.campo-agenda textarea::placeholder {
+    color: #939daf;
+}
+
+.campo-agenda textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.campo-agenda input:focus,
+.campo-agenda select:focus,
+.campo-agenda textarea:focus {
+    border-color: var(--azul);
+}
+
+.formulario-agenda .mensagem-form {
+    margin: 18px 0 0;
+    padding: 12px 14px;
+    font-size: 12px;
+}
+
+.formulario-grid .mensagem-form {
+    margin: 0;
+}
+
+.acoes-formulario {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--borda);
+}
+
+.acoes-formulario button {
+    font-size: 12px;
+}
+
+/* Responsividade */
+
+@media (max-width: 1100px) {
+    .agenda-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .agenda-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 760px) {
+    .agenda-page {
+        padding: 28px 22px 22px;
+    }
+
+    .agenda-header {
+        margin-bottom: 24px;
+    }
+
+    .agenda-acoes {
+        width: 100%;
+    }
+
+    .agenda-acoes button {
+        flex: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .agenda-page {
+        padding: 26px 18px 20px;
+    }
+
+    .agenda-acoes {
+        flex-direction: column;
+    }
+
+    .calendario-painel,
+    .dia-painel {
+        padding: 16px;
+    }
+
+    .calendario-header h2 {
+        font-size: 19px;
+    }
+
+    .navegacao-mes {
+        gap: 4px;
+    }
+
+    .navegacao-mes .botao-icone {
+        width: 30px;
+        height: 30px;
+    }
+
+    .dias-semana,
+    .calendario-dias {
+        gap: 4px;
+    }
+
+    .dias-semana {
+        font-size: 10px;
+    }
+
+    .dia-calendario {
+        min-height: 38px;
+        gap: 2px;
+        padding: 3px;
+        border-radius: 9px;
+    }
+
+    .numero-dia {
+        font-size: 11px;
+    }
+
+    .marcador-dia {
+        min-width: 13px;
+        height: 13px;
+        font-size: 8px;
+    }
+
+    .dia-header h2 {
+        font-size: 21px;
+    }
+
+    .formulario-agenda {
+        padding: 22px;
+    }
+
+    .formulario-header h2 {
+        font-size: 25px;
+    }
+
+    .formulario-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .acoes-formulario {
+        flex-direction: column-reverse;
+    }
+
+    .acoes-formulario button {
+        width: 100%;
+    }
+}

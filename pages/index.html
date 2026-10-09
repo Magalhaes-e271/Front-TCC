@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+            name="description"
+            content="Conheça a OficinaAprender+, uma plataforma para organizar informações e apoiar o acompanhamento psicopedagógico."
+    >
+
+    <title>OficinaAprender+ | Cuidado e aprendizagem</title>
+
+    <script src="../assets/js/tema.js"></script>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
+
+    <script src="../assets/js/index.js" defer></script>
+</head>
+
+<body>
+<a class="pular-conteudo" href="#conteudo-principal">
+    Ir para o conteúdo
+</a>
+
+<div class="card site-card">
+    <header class="card-header site-header">
+        <a class="marca" href="index.html" aria-label="OficinaAprender+, início">
+            Oficina<span>Aprender+</span>
+        </a>
+
+        <button
+                id="btn-menu-publico"
+                class="botao-icone menu-publico-toggle"
+                type="button"
+                aria-label="Abrir menu"
+                aria-controls="menu-publico"
+                aria-expanded="false"
+        >
+            <svg class="icone-abrir" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+
+            <svg class="icone-fechar" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6l12 12M6 18L18 6"></path>
+            </svg>
+        </button>
+
+        <nav id="menu-publico" class="site-menu" aria-label="Menu principal">
+            <a href="#recursos">Recursos</a>
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#projeto">O projeto</a>
+        </nav>
+
+        <div class="site-acoes">
+            <a id="btn-entrar" class="btn-secundario" href="login.html">
+                Entrar
+            </a>
+
+            <a id="btn-cadastrar" class="btn-primario" href="cadastro.html">
+                Criar conta
+            </a>
+        </div>
+    </header>
+
+    <main
+            id="conteudo-principal"
+            class="site-principal"
+            tabindex="-1"
+    >
+        <section class="hero-home" aria-labelledby="titulo-home">
+            <div class="hero-conteudo">
+                <p class="sobretitulo">CUIDADO, ORGANIZAÇÃO E APRENDIZAGEM</p>
+
+                <h1 id="titulo-home" class="hero-titulo">
+                    Um espaço para acompanhar
+                    <span>cada conquista.</span>
+                </h1>
+
+                <p class="hero-descricao">
+                    Reúna informações, metas e atendimentos para dar continuidade
+                    ao acompanhamento psicopedagógico, com atenção ao desenvolvimento
+                    de cada pessoa.
+                </p>
+
+                <div class="hero-acoes">
+                    <a
+                            id="btn-cta-hero"
+                            class="btn-primario"
+                            href="cadastro.html"
+                    >
+                        Criar minha conta
+
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 12h14M12 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+
+                    <a class="btn-secundario" href="#projeto">
+                        Conhecer o projeto
+                    </a>
+                </div>
+
+                <p class="hero-nota">
+                    Tecnologia a serviço do acompanhamento psicopedagógico.
+                </p>
+            </div>
+
+            <div class="hero-visual" aria-hidden="true">
+                <div class="painel-ilustrado">
+                    <div class="painel-cabecalho">
+                        <div class="painel-icone">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 6v15"></path>
+                                <path d="M12 7C9 4.8 5 4.3 2 5.5V19c3-1.2 7-.7 10 1.5"></path>
+                                <path d="M12 7c3-2.2 7-2.7 10-1.5V19c-3-1.2-7-.7-10 1.5"></path>
+                            </svg>
+                        </div>
+
+                        <div>
+                            <span class="painel-legenda">OFICINAAPRENDER+</span>
+                            <h2>Aprendizagem em foco</h2>
+                        </div>
+                    </div>
+
+                    <p class="painel-texto">
+                        Um passo de cada vez, com cuidado em cada etapa.
+                    </p>
+
+                    <div class="caminho-aprendizagem">
+                        <div class="etapa-ilustrada">
+                            <span class="marcador-etapa">01</span>
+
+                            <div>
+                                <strong>Conhecer</strong>
+                                <span>História, perfil e necessidades.</span>
+                            </div>
+                        </div>
+
+                        <div class="etapa-ilustrada">
+                            <span class="marcador-etapa">02</span>
+
+                            <div>
+                                <strong>Planejar</strong>
+                                <span>Objetivos e próximos passos.</span>
+                            </div>
+                        </div>
+
+                        <div class="etapa-ilustrada">
+                            <span class="marcador-etapa">03</span>
+
+                            <div>
+                                <strong>Acompanhar</strong>
+                                <span>Desenvolvimento e conquistas.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="selo-ilustracao">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M8 12l3 3 5-6"></path>
+                        </svg>
+
+                        Cada avanço importa.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section
+                id="recursos"
+                class="secao-home"
+                aria-labelledby="titulo-recursos"
+        >
+            <header class="cabecalho-secao">
+                <p class="sobretitulo">INFORMAÇÕES QUE SE CONECTAM</p>
+                <h2 id="titulo-recursos">Mais clareza para cada etapa.</h2>
+
+                <p>
+                    Um lugar para organizar os elementos do acompanhamento.
+                </p>
+            </header>
+
+            <div class="grade-recursos">
+                <article class="recurso-card">
+                    <div class="icone-recurso" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="8" r="4"></circle>
+                            <path d="M4 21v-2a8 8 0 0 1 16 0v2"></path>
+                        </svg>
+                    </div>
+
+                    <h3>Perfis e informações</h3>
+
+                    <p>
+                        Organize os dados e as informações que ajudam a compreender
+                        cada pessoa e seu contexto.
+                    </p>
+                </article>
+
+                <article class="recurso-card">
+                    <div class="icone-recurso" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="5" width="18" height="16" rx="3"></rect>
+                            <path d="M7 3v4M17 3v4M3 11h18"></path>
+                            <path d="M8 15h2M14 15h2"></path>
+                        </svg>
+                    </div>
+
+                    <h3>Agenda de atendimentos</h3>
+
+                    <p>
+                        Planeje os horários e consulte os atendimentos de cada dia
+                        para organizar sua rotina.
+                    </p>
+                </article>
+
+                <article class="recurso-card">
+                    <div class="icone-recurso" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <circle cx="12" cy="12" r="1"></circle>
+                        </svg>
+                    </div>
+
+                    <h3>Metas e desenvolvimento</h3>
+
+                    <p>
+                        Defina objetivos para o acompanhamento e mantenha atenção
+                        aos próximos passos e às conquistas.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section
+                id="como-funciona"
+                class="secao-home"
+                aria-labelledby="titulo-funcionamento"
+        >
+            <header class="cabecalho-secao">
+                <p class="sobretitulo">UM CAMINHO PARA COMEÇAR</p>
+                <h2 id="titulo-funcionamento">Como funciona</h2>
+
+                <p>
+                    Do primeiro cadastro à continuidade do acompanhamento.
+                </p>
+            </header>
+
+            <ol class="grade-passos">
+                <li class="passo">
+                    <span class="passo-numero" aria-hidden="true">01</span>
+
+                    <h3>Crie seu perfil</h3>
+
+                    <p>
+                        Faça seu cadastro e preencha suas informações pessoais
+                        e profissionais.
+                    </p>
+                </li>
+
+                <li class="passo">
+                    <span class="passo-numero" aria-hidden="true">02</span>
+
+                    <h3>Organize o acompanhamento</h3>
+
+                    <p>
+                        Reúna informações, planeje os atendimentos e estabeleça
+                        objetivos para cada etapa.
+                    </p>
+                </li>
+
+                <li class="passo">
+                    <span class="passo-numero" aria-hidden="true">03</span>
+
+                    <h3>Acompanhe cada avanço</h3>
+
+                    <p>
+                        Mantenha as informações atualizadas e dê continuidade
+                        ao cuidado e à aprendizagem.
+                    </p>
+                </li>
+            </ol>
+        </section>
+
+        <section
+                id="projeto"
+                class="secao-home sobre-projeto"
+                aria-labelledby="titulo-projeto"
+        >
+            <div class="sobre-texto">
+                <p class="sobretitulo">TECNOLOGIA COM PROPÓSITO</p>
+                <h2 id="titulo-projeto">Conheça a OficinaAprender+</h2>
+
+                <p>
+                    A OficinaAprender+ é um projeto desenvolvido como Trabalho
+                    de Conclusão de Curso em Desenvolvimento de Sistemas,
+                    na Etec Sebrae.
+                </p>
+
+                <p>
+                    Nossa proposta é aproximar tecnologia e acompanhamento
+                    psicopedagógico, com informações organizadas e atenção
+                    ao desenvolvimento de cada pessoa.
+                </p>
+            </div>
+
+            <aside class="sobre-card" aria-labelledby="titulo-projeto-academico">
+                <p class="sobretitulo">PROJETO ACADÊMICO</p>
+
+                <h3 id="titulo-projeto-academico">
+                    Construído para apoiar a aprendizagem.
+                </h3>
+
+                <dl class="dados-projeto">
+                    <div>
+                        <dt>Instituição</dt>
+                        <dd>Etec Sebrae · Centro Paula Souza</dd>
+                    </div>
+
+                    <div>
+                        <dt>Curso</dt>
+                        <dd>Técnico em Desenvolvimento de Sistemas</dd>
+                    </div>
+
+                    <div>
+                        <dt>Projeto</dt>
+                        <dd>Trabalho de Conclusão de Curso · 2026</dd>
+                    </div>
+                </dl>
+            </aside>
+        </section>
+
+        <section class="convite-final" aria-labelledby="titulo-convite">
+            <div>
+                <p class="sobretitulo">SEU PRÓXIMO PASSO</p>
+
+                <h2 id="titulo-convite">
+                    Comece pela organização do seu perfil.
+                </h2>
+
+                <p>
+                    Crie sua conta para acessar seu espaço na OficinaAprender+.
+                </p>
+            </div>
+
+            <a
+                    id="btn-cta-final"
+                    class="btn-primario"
+                    href="cadastro.html"
+            >
+                Criar minha conta
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </section>
+    </main>
+
+    <footer class="site-rodape">
+        <div>
+            <a class="marca" href="index.html">
+                Oficina<span>Aprender+</span>
+            </a>
+
+            <p>
+                © <span id="ano-atual">2026</span> OficinaAprender+
+            </p>
+        </div>
+
+        <div class="credito-projeto">
+            <p>Etec Sebrae · Centro Paula Souza</p>
+            <p>Desenvolvimento de Sistemas · São Paulo</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

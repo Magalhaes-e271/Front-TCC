@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Agenda | OficinaAprender+</title>
+
+	<link rel="stylesheet" href="../assets/css/global.css">
+	<link rel="stylesheet" href="../assets/css/agenda.css">
+
+	<script src="../assets/js/config.js" defer></script>
+	<script src="../assets/js/utils.js" defer></script>
+	<script src="../assets/js/navbar.js" defer></script>
+	<script src="../assets/js/agenda.js" defer></script>
+</head>
+
+<body>
+<div class="dashboard-card">
+	<header class="card-header">
+		<button
+				id="btn-barra-lateral"
+				class="botao-icone"
+				type="button"
+				aria-label="Abrir ou fechar menu"
+				aria-controls="menu-lateral"
+				title="Abrir ou fechar menu"
+		>
+			<svg viewBox="0 0 24 24" aria-hidden="true">
+				<rect x="3" y="4" width="18" height="16" rx="3"></rect>
+				<path d="M9 4v16"></path>
+			</svg>
+		</button>
+
+		<a class="marca" href="dashboard.html">
+			Oficina<span>Aprender+</span>
+		</a>
+
+		<span class="selo">Organização dos atendimentos</span>
+	</header>
+
+	<div class="dashboard-body">
+		<aside
+				class="nav-bar"
+				id="menu-lateral"
+				aria-label="Menu principal"
+		>
+			<div class="nav-header">
+				<img
+						id="user-img"
+						class="user-img"
+						src="../assets/icons/user-icon.png"
+						alt="Foto do seu perfil"
+						width="64"
+						height="64"
+				>
+
+				<div class="perfil-texto">
+					<span class="perfil-legenda">BEM-VINDO(A)</span>
+					<h2 id="user-name">Seu perfil</h2>
+					<p id="user-formacao">OficinaAprender+</p>
+				</div>
+			</div>
+
+			<nav class="nav-btns" aria-label="Páginas do painel">
+				<button
+						id="btn-pacientes"
+						type="button"
+						title="Pacientes"
+				>
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<rect x="3" y="3" width="7" height="7" rx="2"></rect>
+						<rect x="14" y="3" width="7" height="7" rx="2"></rect>
+						<rect x="3" y="14" width="7" height="7" rx="2"></rect>
+						<rect x="14" y="14" width="7" height="7" rx="2"></rect>
+					</svg>
+
+					<span class="btn-text">Pacientes</span>
+				</button>
+
+				<button
+						id="btn-profissionais"
+						type="button"
+						title="Profissionais"
+				>
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<circle cx="9" cy="8" r="3"></circle>
+						<path d="M3 21v-3a6 6 0 0 1 12 0v3"></path>
+						<path d="M17 5a3 3 0 0 1 0 6"></path>
+						<path d="M21 21v-3a6 6 0 0 0-4-5"></path>
+					</svg>
+
+					<span class="btn-text">Profissionais</span>
+				</button>
+
+				<button
+						id="btn-agenda"
+						class="nav-btn-active"
+						type="button"
+						aria-current="page"
+						title="Agenda"
+				>
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<rect x="3" y="5" width="18" height="16" rx="3"></rect>
+						<path d="M7 3v4M17 3v4M3 11h18"></path>
+						<path d="M8 15h2M14 15h2"></path>
+					</svg>
+
+					<span class="btn-text">Agenda</span>
+				</button>
+			</nav>
+
+			<div class="nav-footer">
+				<button
+						id="btn-user-config"
+						type="button"
+						title="Meu perfil"
+				>
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<circle cx="12" cy="8" r="4"></circle>
+						<path d="M4 21v-2a8 8 0 0 1 16 0v2"></path>
+					</svg>
+
+					<span class="btn-text">Meu perfil</span>
+				</button>
+
+				<button
+						id="btn-sair"
+						type="button"
+						title="Sair da conta"
+				>
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+						<path d="M13 8l4 4-4 4M7 12h14"></path>
+					</svg>
+
+					<span class="btn-text">Sair da conta</span>
+				</button>
+			</div>
+		</aside>
+
+		<main class="main-content agenda-page">
+			<header class="agenda-header">
+				<div>
+					<p class="sobretitulo">CUIDADO E ORGANIZAÇÃO</p>
+					<h1>Sua agenda</h1>
+
+					<p class="subtitulo">
+						Organize seus horários e acompanhe os atendimentos
+						de cada dia.
+					</p>
+				</div>
+
+				<div class="agenda-acoes">
+					<button
+							id="recarregar"
+							class="btn-secundario"
+							type="button"
+					>
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M20 7v5h-5"></path>
+							<path d="M4 17v-5h5"></path>
+							<path d="M6.1 7a7 7 0 0 1 11.6-2L20 8"></path>
+							<path d="M17.9 17a7 7 0 0 1-11.6 2L4 16"></path>
+						</svg>
+
+						<span>Atualizar</span>
+					</button>
+
+					<button
+							id="novo-atendimento"
+							class="btn-primario"
+							type="button"
+							disabled
+					>
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M12 5v14M5 12h14"></path>
+						</svg>
+
+						Novo atendimento
+					</button>
+				</div>
+			</header>
+
+			<p
+					id="pagina-erro"
+					class="api-mensagem"
+					role="status"
+					hidden
+			></p>
+
+			<div class="agenda-layout">
+				<section
+						class="calendario-painel"
+						aria-labelledby="mes-atual"
+				>
+					<header class="calendario-header">
+						<h2 id="mes-atual">Calendário</h2>
+
+						<div class="navegacao-mes">
+							<button
+									id="mes-anterior"
+									class="botao-icone"
+									type="button"
+									aria-label="Mês anterior"
+									title="Mês anterior"
+							>
+								<svg viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M15 6l-6 6 6 6"></path>
+								</svg>
+							</button>
+
+							<button
+									id="mes-proximo"
+									class="botao-icone"
+									type="button"
+									aria-label="Próximo mês"
+									title="Próximo mês"
+							>
+								<svg viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M9 6l6 6-6 6"></path>
+								</svg>
+							</button>
+						</div>
+					</header>
+
+					<div class="calendario-filtro">
+						<span>Escolha uma data</span>
+
+						<button
+								id="ir-hoje"
+								class="botao-hoje"
+								type="button"
+						>
+							Hoje
+						</button>
+					</div>
+
+					<div class="dias-semana" aria-hidden="true">
+						<span>Dom</span>
+						<span>Seg</span>
+						<span>Ter</span>
+						<span>Qua</span>
+						<span>Qui</span>
+						<span>Sex</span>
+						<span>Sáb</span>
+					</div>
+
+					<div
+							id="calendario-dias"
+							class="calendario-dias"
+							role="group"
+							aria-label="Dias do mês"
+					></div>
+
+					<p class="legenda-calendario">
+						Selecione um dia para ver os atendimentos.
+						Os números menores indicam a quantidade agendada.
+					</p>
+				</section>
+
+				<section
+						class="dia-painel"
+						aria-labelledby="dia-selecionado"
+				>
+					<header class="dia-header">
+						<p class="sobretitulo">ATENDIMENTOS DO DIA</p>
+
+						<h2 id="dia-selecionado">Dia selecionado</h2>
+
+						<span id="contador-dia" class="contador-dia">—</span>
+					</header>
+
+					<p id="estado-dia" class="estado-dia" role="status">
+						Carregando atendimentos…
+					</p>
+
+					<div
+							id="agenda-lista"
+							class="agenda-lista"
+							aria-busy="true"
+					></div>
+				</section>
+			</div>
+
+			<footer class="agenda-rodape">
+				OficinaAprender+ · Cada atendimento, um novo passo.
+			</footer>
+		</main>
+	</div>
+</div>
+
+<dialog
+		id="modal-agendamento"
+		class="modal-agendamento"
+		aria-labelledby="titulo-modal"
+>
+	<form id="agenda-form" class="formulario-agenda">
+		<header class="formulario-header">
+			<div>
+				<p class="sobretitulo">ORGANIZE SEU DIA</p>
+				<h2 id="titulo-modal">Novo atendimento</h2>
+			</div>
+
+			<button
+					class="botao-icone fechar-modal"
+					type="button"
+					data-fechar
+					aria-label="Fechar formulário"
+					title="Fechar"
+			>
+				<svg viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M6 6l12 12M6 18L18 6"></path>
+				</svg>
+			</button>
+		</header>
+
+		<p class="formulario-introducao">
+			Preencha as informações do atendimento.
+		</p>
+
+		<div class="formulario-grid">
+			<label class="campo-agenda campo-inteiro" for="agenda-titulo">
+				Título do atendimento
+
+				<input
+						id="agenda-titulo"
+						name="titulo"
+						type="text"
+						placeholder="Ex.: Atendimento individual"
+						maxlength="150"
+						required
+				>
+			</label>
+
+			<label class="campo-agenda campo-inteiro" for="agenda-paciente">
+				Paciente <span class="campo-opcional">(opcional)</span>
+
+				<select id="agenda-paciente" name="idPaciente">
+					<option value="">Sem paciente</option>
+				</select>
+			</label>
+
+			<p
+					id="pacientes-aviso"
+					class="mensagem-form campo-inteiro"
+					role="status"
+					hidden
+			></p>
+
+			<label class="campo-agenda" for="agenda-inicio">
+				Data e horário de início
+
+				<input
+						id="agenda-inicio"
+						name="inicio"
+						type="datetime-local"
+						required
+				>
+			</label>
+
+			<label class="campo-agenda" for="agenda-fim">
+				Data e horário de fim
+
+				<input
+						id="agenda-fim"
+						name="fim"
+						type="datetime-local"
+						required
+				>
+			</label>
+
+			<label
+					class="campo-agenda campo-inteiro"
+					for="agenda-observacoes"
+			>
+				Descrição <span class="campo-opcional">(opcional)</span>
+
+				<textarea
+						id="agenda-observacoes"
+						name="observacoes"
+						rows="4"
+						placeholder="Descreva o atendimento ou registre informações importantes."
+				></textarea>
+			</label>
+		</div>
+
+		<p
+				id="agenda-erro"
+				class="mensagem-form"
+				role="alert"
+				hidden
+		></p>
+
+		<footer class="acoes-formulario">
+			<button
+					class="btn-secundario"
+					type="button"
+					data-fechar
+			>
+				Voltar
+			</button>
+
+			<button
+					id="salvar-agendamento"
+					class="btn-primario"
+					type="submit"
+			>
+				Agendar atendimento
+			</button>
+		</footer>
+	</form>
+</dialog>
+
+<script src="../assets/js/tema.js"></script>
+</body>
+</html>
