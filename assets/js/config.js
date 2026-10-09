@@ -1,5 +1,5 @@
 // Altere apenas esta URL quando publicar a API.
 window.OFICINA_CONFIG = Object.freeze({
-  apiBase: 'http://localhost:8080',
+  apiBase: 'https://oficina-aprender-api.onrender.com',
   timeoutMs: 20000
 });
