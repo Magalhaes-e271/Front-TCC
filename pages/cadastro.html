@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro | OficinaAprender+</title>
+
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/cadastro.css">
+    <link rel="stylesheet" href="../assets/css/conexao.css">
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/cadastro.js"></script>
+    <script src="../assets/js/tema.js"></script>
+    <script src="../assets/js/conexao.js"></script>
+
 </head>
 <body>
 <main class="card boxMae">
@@ -25,6 +34,28 @@
         <li><span class="numero">03</span><span>Revisão</span></li>
     </ol>
     <p id="progresso-etapa" class="sr-only" aria-live="polite">Etapa 1 de 3: Dados pessoais</p>
+    <div
+            id="conexao-servidor"
+            class="conexao-servidor"
+            data-estado="inicial"
+    >
+        <p
+                id="conexao-status"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+        >
+            Preparando conexão…
+        </p>
+
+        <button
+                id="conexao-tentar"
+                type="button"
+                hidden
+        >
+            Tentar conectar novamente
+        </button>
+    </div>
     <form id="form-cadastro" novalidate>
         <section class="parte ativa" id="parte-pessoal" aria-labelledby="titulo-pessoal">
             <div class="cabecalho-parte">
@@ -169,9 +200,6 @@
     </form>
     <footer class="card-footer" id="rodape-cadastro">Já possui uma conta? <a href="login.html">Entrar</a></footer>
 </main>
-<script src="../assets/js/config.js"></script>
-<script src="../assets/js/utils.js"></script>
-<script src="../assets/js/cadastro.js"></script>
-<script src="../assets/js/tema.js"></script>
+
 </body>
 </html>

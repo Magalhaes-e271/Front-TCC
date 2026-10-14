@@ -111,15 +111,26 @@
 
       const controller = new AbortController();
 
-      const timer = setTimeout(() => {
-        controller.abort();
-      }, timeout);
-
+      let timer = null;
       let conectado = false;
 
       atualizarEnvio(true);
 
       try {
+        // Aguarda a verificação iniciada pelo conexao.js.
+        if (window.OficinaConexao) {
+          textoBotao.textContent = "Conectando ao servidor…";
+
+          await window.OficinaConexao.conectar();
+
+          textoBotao.textContent = "Entrando…";
+        }
+
+        // O prazo do login começa depois da conexão inicial.
+        timer = setTimeout(() => {
+          controller.abort();
+        }, timeout);
+
         const resposta = await fetch(`${api}/login`, {
           method: "POST",
 

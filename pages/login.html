@@ -8,8 +8,10 @@
 
   <link rel="stylesheet" href="../assets/css/global.css">
   <link rel="stylesheet" href="../assets/css/login.css">
+  <link rel="stylesheet" href="../assets/css/conexao.css">
 
   <script src="../assets/js/config.js" defer></script>
+  <script src="../assets/js/conexao.js" defer></script>
   <script src="../assets/js/login.js" defer></script>
   <script src="../assets/js/tema.js" defer></script>
 </head>
@@ -79,7 +81,28 @@
 
         <p>Entre com seu e-mail e senha para continuar.</p>
       </div>
+      <div
+              id="conexao-servidor"
+              class="conexao-servidor"
+              data-estado="inicial"
+      >
+        <p
+                id="conexao-status"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+        >
+          Preparando conexão…
+        </p>
 
+        <button
+                id="conexao-tentar"
+                type="button"
+                hidden
+        >
+          Tentar conectar novamente
+        </button>
+      </div>
       <form id="form-login" novalidate>
         <div class="campo">
           <input
