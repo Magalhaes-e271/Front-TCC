@@ -57,10 +57,7 @@
       [
         "senha",
         "confirm-senha",
-        "foto",
-        "horarioTrabalho",
-        "horarioDeSaida",
-        "condicao"
+        "foto"
       ].forEach((id) => camposBloqueados.add(id));
     }
 
@@ -632,7 +629,7 @@
         )
       };
 
-      if (!editando) {
+      {
         perfil.horarioDeEntrada = horarioParaServidor(
             elemento("horarioTrabalho").value
         );
@@ -994,7 +991,7 @@
     }
 
     elemento("foto-ajuda").textContent = editando
-        ? "A troca de foto não está disponível nesta edição."
+        ? "Troque sua foto na página Meu perfil."
         : "Foto obrigatória. PNG, JPEG ou GIF, até 10 MB.";
 
     elemento("concluir-sem-foto")?.remove();
@@ -1042,7 +1039,7 @@
       elemento("nota-edicao").hidden = false;
       elemento("nota-edicao").textContent =
           "Atualize seus dados e descrição. " +
-          "E-mail, horários e foto ficam disponíveis apenas para consulta.";
+          "O e-mail é usado no login. Troque sua foto na página Meu perfil.";
 
       elemento("rodape-cadastro").hidden = true;
       elemento("nota-envio").textContent =

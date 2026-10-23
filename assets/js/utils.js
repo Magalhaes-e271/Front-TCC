@@ -25,13 +25,14 @@
     }
 
     function guardarSessao(dados) {
-        if (!dados?.token || dados.token === 'undefined' || !dados.id) {
+        const usuario = dados?.usuario || dados;
+        if (!dados?.token || dados.token === 'undefined' || !usuario?.id) {
             throw new Error('O servidor não retornou uma sessão válida. Atualize o backend.');
         }
         sair(false);
         sessao = {
             token: dados.token,
-            usuario: {id: dados.id, email: dados.email, tipoUsuario: dados.tipoUsuario, perfil: dados.perfil || {}}
+            usuario: {id: usuario.id, email: usuario.email, tipoUsuario: usuario.tipoUsuario, perfil: usuario.perfil || {}}
         };
         localStorage.setItem(chave, JSON.stringify(sessao));
     }
@@ -202,11 +203,12 @@
         put: (e, d) => requisicao(e, {method: 'PUT', dados: d}),
         patch: (e, d) => requisicao(e, {method: 'PATCH', dados: d}),
         delete: (e) => requisicao(e, {method: 'DELETE'}),
-        login: async (email, senha) => guardarSessao(await requisicao('/auth/login', {
+        login: async (email, senha, codigo) => guardarSessao(await requisicao('/login', {
             method: 'POST',
-            dados: {email, senha},
+            dados: {email, senha, ...(codigo ? {codigo} : {})},
             auth: false
         })),
+        guardarSessao,
         exigirSessao,
         sair,
         mensagem,

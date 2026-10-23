@@ -1,6 +1,11 @@
 (() => {
   "use strict";
 
+  if (new URLSearchParams(window.location.search).has("cadastro")) {
+    window.location.replace("criar_paciente.html#equipe");
+    return;
+  }
+
   function iniciarPagina() {
     const elemento = (id) => document.getElementById(id);
     const form = elemento("busca-form");
@@ -19,17 +24,10 @@
     const atualizar = elemento("recarregar");
     const estado = elemento("estado-lista");
 
-    const cadastro = new URLSearchParams(
-        window.location.search
-    ).has("cadastro");
-
     const selecionados = new Map();
     const existentes = new Set();
 
-    const CHAVE = "oficina.paciente";
-
     let usuario = null;
-    let dadosCadastro = null;
     let resultados = [];
 
     let pronto = false;
@@ -56,15 +54,7 @@
     }
 
     function mensagem(texto = "", tipo = "erro") {
-      window.Oficina.mensagem(
-          elemento("pagina-erro"),
-          texto,
-          tipo
-      );
-    }
-
-    function pacienteSalvo() {
-      return cadastro && Boolean(dadosCadastro?.salvoId);
+      window.Oficina.mensagem(elemento("pagina-erro"), texto, tipo);
     }
 
     function sincronizar() {
@@ -74,63 +64,48 @@
       pesquisar.disabled = bloqueado || buscando;
       atualizar.disabled = iniciando || enviando || buscando;
 
-      limpar.disabled = bloqueado || pacienteSalvo();
+      limpar.disabled = bloqueado;
       limpar.hidden = selecionados.size === 0;
 
-      salvar.disabled =
-          bloqueado ||
-          buscando ||
-          (!cadastro && selecionados.size === 0);
+      salvar.disabled = bloqueado || buscando || selecionados.size === 0;
 
-      salvar.textContent = enviando
-          ? (cadastro ? "Concluindo…" : "Enviando…")
-          : (cadastro ? "Concluir cadastro" : "Enviar solicitações");
+      salvar.textContent = enviando ? "Enviando…" : "Enviar solicitações";
 
       pesquisar.querySelector("span").textContent = buscando
-          ? "Pesquisando…"
-          : "Pesquisar";
+        ? "Pesquisando…"
+        : "Pesquisar";
 
-      elemento("contador-selecao").textContent =
-          `${selecionados.size} ${
-              selecionados.size === 1
-                  ? "profissional selecionado"
-                  : "profissionais selecionados"
-          }`;
+      elemento("contador-selecao").textContent = `${selecionados.size} ${
+        selecionados.size === 1
+          ? "profissional selecionado"
+          : "profissionais selecionados"
+      }`;
 
-      lista
-          .querySelectorAll("input[type='checkbox']")
-          .forEach((check) => {
-            check.disabled = bloqueado || pacienteSalvo();
-          });
+      lista.querySelectorAll("input[type='checkbox']").forEach((check) => {
+        check.disabled = bloqueado;
+      });
 
-      lista.setAttribute(
-          "aria-busy",
-          String(buscando || iniciando)
-      );
+      lista.setAttribute("aria-busy", String(buscando || iniciando));
     }
 
     function renderizar() {
       lista.replaceChildren();
 
       elemento("contador-resultados").textContent =
-          buscando || iniciando
-              ? "Pesquisando…"
-              : `${resultados.length} ${
-                  resultados.length === 1
-                      ? "resultado"
-                      : "resultados"
-              }`;
+        buscando || iniciando
+          ? "Pesquisando…"
+          : `${resultados.length} ${
+              resultados.length === 1 ? "resultado" : "resultados"
+            }`;
 
-      estado.hidden =
-          !buscando &&
-          !iniciando &&
-          resultados.length > 0;
+      estado.hidden = !buscando && !iniciando && resultados.length > 0;
 
-      estado.textContent = buscando || iniciando
+      estado.textContent =
+        buscando || iniciando
           ? "Carregando profissionais…"
           : !pronto || erroBusca
-              ? "A lista está indisponível. Tente atualizar ou pesquisar novamente."
-              : "Nenhum profissional disponível para esta busca. Tente outro nome ou e-mail.";
+            ? "A lista está indisponível. Tente atualizar ou pesquisar novamente."
+            : "Nenhum profissional disponível para esta busca. Tente outro nome ou e-mail.";
 
       if (buscando || iniciando) {
         sincronizar();
@@ -140,16 +115,13 @@
       resultados.forEach((profissional) => {
         const perfil = profissional.perfil || profissional;
 
-        const nome =
-            perfil.nome ||
-            profissional.email ||
-            "Profissional";
+        const nome = perfil.nome || profissional.email || "Profissional";
 
         const label = criar("label", "opcao-profissional");
 
         label.classList.toggle(
-            "selecionada",
-            selecionados.has(profissional.id)
+          "selecionada",
+          selecionados.has(profissional.id),
         );
 
         const check = criar("input", "check-profissional");
@@ -166,40 +138,30 @@
         img.height = 48;
 
         void window.Oficina.imagem(
-            img,
-            perfil.urlFotoPerfil || profissional.urlFotoPerfil
+          img,
+          perfil.urlFotoPerfil || profissional.urlFotoPerfil,
         );
 
         const dados = criar("span", "dados-opcao");
 
         dados.append(
-            criar("strong", "nome-opcao", nome),
+          criar("strong", "nome-opcao", nome),
 
-            criar(
-                "span",
-                "ocupacao-opcao",
-                perfil.ocupacao || "Profissional"
-            )
+          criar("span", "ocupacao-opcao", perfil.ocupacao || "Profissional"),
         );
 
         if (profissional.email) {
-          dados.append(
-              criar(
-                  "span",
-                  "email-opcao",
-                  profissional.email
-              )
-          );
+          dados.append(criar("span", "email-opcao", profissional.email));
         }
 
         const status = criar(
-            "span",
-            "status-opcao",
-            check.checked ? "Selecionado" : "Selecionar"
+          "span",
+          "status-opcao",
+          check.checked ? "Selecionado" : "Selecionar",
         );
 
         check.addEventListener("change", () => {
-          if (enviando || pacienteSalvo()) {
+          if (enviando) {
             return;
           }
 
@@ -209,14 +171,9 @@
             selecionados.delete(profissional.id);
           }
 
-          label.classList.toggle(
-              "selecionada",
-              check.checked
-          );
+          label.classList.toggle("selecionada", check.checked);
 
-          status.textContent = check.checked
-              ? "Selecionado"
-              : "Selecionar";
+          status.textContent = check.checked ? "Selecionado" : "Selecionar";
 
           sincronizar();
         });
@@ -247,7 +204,7 @@
         const termo = encodeURIComponent(busca.value.trim());
 
         const encontrados = await window.Oficina.get(
-            `/usuario/buscar?nome=${termo}`
+          `/usuario/buscar?nome=${termo}`,
         );
 
         if (pedido !== sequencia) {
@@ -256,7 +213,7 @@
 
         if (!Array.isArray(encontrados)) {
           throw new Error(
-              "O servidor não retornou uma lista válida de profissionais."
+            "O servidor não retornou uma lista válida de profissionais.",
           );
         }
 
@@ -266,21 +223,18 @@
           const id = Number(item?.id);
 
           if (
-              !Number.isSafeInteger(id) ||
-              id <= 0 ||
-              id === Number(usuario.id)
+            !Number.isSafeInteger(id) ||
+            id <= 0 ||
+            id === Number(usuario.id)
           ) {
             return;
           }
 
-          if (
-              item.tipoUsuario &&
-              item.tipoUsuario !== "PROFISSIONAL"
-          ) {
+          if (item.tipoUsuario && item.tipoUsuario !== "PROFISSIONAL") {
             return;
           }
 
-          if (!cadastro && existentes.has(id)) {
+          if (existentes.has(id)) {
             return;
           }
 
@@ -296,9 +250,7 @@
         resultados = [];
         erroBusca = true;
 
-        mensagem(
-            erro.message || "Não foi possível pesquisar profissionais."
-        );
+        mensagem(erro.message || "Não foi possível pesquisar profissionais.");
       } finally {
         if (pedido === sequencia) {
           buscando = false;
@@ -325,76 +277,40 @@
         usuario = await window.Oficina.exigirSessao();
 
         if (usuario.tipoUsuario !== "PROFISSIONAL") {
-          throw new Error(
-              "Esta página está disponível para profissionais."
-          );
+          throw new Error("Esta página está disponível para profissionais.");
         }
 
-        if (cadastro) {
-          if (!dadosCadastro) {
-            try {
-              dadosCadastro = JSON.parse(
-                  sessionStorage.getItem(CHAVE)
-              );
-            } catch {
-              dadosCadastro = null;
-            }
-          }
+        const relacoes = await window.Oficina.get(
+          "/usuario-aluno?tipoRelacao=PROFISSIONAL_PROFISSIONAL",
+        );
 
-          if (!dadosCadastro?.nome) {
-            window.location.replace("criar_paciente.html");
-            return;
-          }
-
-          elemento("cadastro-nota").hidden = false;
-
-          elemento("cadastro-nota").textContent = pacienteSalvo()
-              ? "O paciente já foi salvo. Conclua esta etapa para finalizar o cadastro e o envio da foto."
-              : `Etapa final do cadastro de ${dadosCadastro.nome}. Você pode escolher profissionais ou concluir sem convites.`;
-
-          elemento("voltar-profissionais").href =
-              "descreve_paciente.html";
-
-          elemento("voltar-profissionais").textContent =
-              "Voltar às informações";
-        } else {
-          const relacoes = await window.Oficina.get(
-              "/usuario-aluno?tipoRelacao=PROFISSIONAL_PROFISSIONAL"
-          );
-
-          if (!Array.isArray(relacoes)) {
-            throw new Error(
-                "Não foi possível consultar os vínculos existentes."
-            );
-          }
-
-          existentes.clear();
-
-          relacoes.forEach((relacao) => {
-            const outro =
-                Number(relacao.usuarioSolicitante?.id) ===
-                Number(usuario.id)
-                    ? relacao.usuarioDestinatario
-                    : relacao.usuarioSolicitante;
-
-            const id = Number(outro?.id);
-
-            if (Number.isSafeInteger(id) && id > 0) {
-              existentes.add(id);
-            }
-          });
-
-          existentes.forEach((id) => {
-            selecionados.delete(id);
-          });
+        if (!Array.isArray(relacoes)) {
+          throw new Error("Não foi possível consultar os vínculos existentes.");
         }
+
+        existentes.clear();
+
+        relacoes.forEach((relacao) => {
+          const outro =
+            Number(relacao.usuarioSolicitante?.id) === Number(usuario.id)
+              ? relacao.usuarioDestinatario
+              : relacao.usuarioSolicitante;
+
+          const id = Number(outro?.id);
+
+          if (Number.isSafeInteger(id) && id > 0) {
+            existentes.add(id);
+          }
+        });
+
+        existentes.forEach((id) => {
+          selecionados.delete(id);
+        });
 
         pronto = true;
         mensagem();
       } catch (erro) {
-        mensagem(
-            erro.message || "Não foi possível carregar esta página."
-        );
+        mensagem(erro.message || "Não foi possível carregar esta página.");
       } finally {
         iniciando = false;
         renderizar();
@@ -405,94 +321,13 @@
       }
     }
 
-    async function concluirCadastro() {
-      const dados = dadosCadastro;
-
-      if (!dados?.nome) {
-        throw new Error(
-            "Retorne ao cadastro e preencha os dados do paciente."
-        );
-      }
-
-      if (!dados.salvoId) {
-        const paciente = await window.Oficina.post(
-            "/paciente/criar",
-            {
-              email: dados.email,
-
-              perfilUsuario: {
-                nome: dados.nome,
-                telefone: dados.celular,
-                dataNascimento: dados.dataNascimento,
-                condicoes: dados.condicoes,
-                conteudoHtml: window.Oficina.textoHTML(
-                    dados.problemas
-                )
-              },
-
-              profissionais: [...selecionados.keys()]
-            }
-        );
-
-        const id = Number(paciente?.id);
-
-        if (!Number.isSafeInteger(id) || id <= 0) {
-          throw new Error(
-              "O servidor não retornou o identificador do paciente."
-          );
-        }
-
-        dados.salvoId = id;
-        selecionados.clear();
-
-        sessionStorage.setItem(
-            CHAVE,
-            JSON.stringify(dados)
-        );
-      }
-
-      if (dados.foto) {
-        try {
-          const resposta = await fetch(dados.foto);
-
-          if (!resposta.ok) {
-            throw new Error(
-                "Não foi possível ler a foto selecionada."
-            );
-          }
-
-          const blob = await resposta.blob();
-
-          const arquivo = new File(
-              [blob],
-              dados.fotoNome || "foto.png",
-              { type: blob.type }
-          );
-
-          await window.Oficina.foto(
-              dados.salvoId,
-              arquivo
-          );
-        } catch (erro) {
-          throw new Error(
-              `Paciente salvo. Não foi possível enviar a foto: ${erro.message} Clique em Concluir cadastro para tentar novamente.`
-          );
-        }
-      }
-
-      sessionStorage.removeItem(CHAVE);
-
-      window.location.href =
-          `metas.html?paciente=${encodeURIComponent(dados.salvoId)}`;
-    }
-
     salvar.addEventListener("click", async () => {
       if (
-          !pronto ||
-          iniciando ||
-          buscando ||
-          enviando ||
-          (!cadastro && selecionados.size === 0)
+        !pronto ||
+        iniciando ||
+        buscando ||
+        enviando ||
+        selecionados.size === 0
       ) {
         return;
       }
@@ -509,42 +344,32 @@
       let enviados = 0;
 
       try {
-        if (cadastro) {
-          await concluirCadastro();
-        } else {
-          for (const id of [...selecionados.keys()]) {
-            await window.Oficina.post(
-                "/usuario-aluno/criar",
-                {
-                  usuarioDestinatario: { id }
-                }
-            );
+        for (const id of [...selecionados.keys()]) {
+          await window.Oficina.post("/usuario-aluno/criar", {
+            usuarioDestinatario: { id },
+          });
 
-            selecionados.delete(id);
-            existentes.add(id);
+          selecionados.delete(id);
+          existentes.add(id);
 
-            resultados = resultados.filter((item) => {
-              return item.id !== id;
-            });
+          resultados = resultados.filter((item) => {
+            return item.id !== id;
+          });
 
-            enviados++;
-            renderizar();
-          }
-
-          window.location.href = "Profissionais.html";
+          enviados++;
+          renderizar();
         }
+
+        window.location.href = "Profissionais.html";
       } catch (erro) {
-        const detalhe =
-            erro.message || "Não foi possível concluir a operação.";
+        const detalhe = erro.message || "Não foi possível concluir a operação.";
 
         mensagem(
-            enviados > 0
-                ? `${enviados} ${
-                    enviados === 1
-                        ? "solicitação enviada"
-                        : "solicitações enviadas"
-                }. ${detalhe} Tente enviar as restantes novamente.`
-                : detalhe
+          enviados > 0
+            ? `${enviados} ${
+                enviados === 1 ? "solicitação enviada" : "solicitações enviadas"
+              }. ${detalhe} Tente enviar as restantes novamente.`
+            : detalhe,
         );
       } finally {
         enviando = false;
@@ -570,7 +395,7 @@
     });
 
     limpar.addEventListener("click", () => {
-      if (enviando || pacienteSalvo()) {
+      if (enviando) {
         return;
       }
 
@@ -586,11 +411,9 @@
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener(
-        "DOMContentLoaded",
-        iniciarPagina,
-        { once: true }
-    );
+    document.addEventListener("DOMContentLoaded", iniciarPagina, {
+      once: true,
+    });
   } else {
     iniciarPagina();
   }

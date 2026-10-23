@@ -158,6 +158,32 @@
 
         mostrarSecao("pessoal");
 
+        elemento("salvar-foto").addEventListener("click", () => {
+            const arquivo = elemento("nova-foto").files[0];
+            if (!arquivo) { mostrarMensagem("Selecione uma foto."); return; }
+            window.Oficina.ocupar(elemento("salvar-foto"), async () => {
+                const usuario = await window.Oficina.exigirSessao();
+                const perfil = await window.Oficina.foto(usuario.id, arquivo);
+                await window.Oficina.imagem(elemento("foto-perfil"), perfil.urlFotoPerfil);
+                elemento("nova-foto").value = "";
+                mostrarMensagem("Foto atualizada com sucesso.", "sucesso");
+            }, aviso);
+        });
+        elemento("form-senha").addEventListener("submit", event => {
+            event.preventDefault();
+            const nova = elemento("nova-senha").value;
+            if (nova !== elemento("confirmar-nova-senha").value) {
+                mostrarMensagem("As novas senhas não coincidem."); return;
+            }
+            window.Oficina.ocupar(event.submitter || elemento("form-senha").querySelector("button"), async () => {
+                await window.Oficina.put("/usuario/senha", {senhaAtual: elemento("senha-atual").value, novaSenha: nova,
+                    ...(elemento("codigo-senha").value.trim() ? {codigo: elemento("codigo-senha").value.trim()} : {})});
+                elemento("form-senha").reset();
+                window.Oficina.sair(false);
+                location.replace("login.html?senha=alterada");
+            }, aviso);
+        });
+
         async function carregarPerfil() {
             mostrarMensagem("Carregando seu perfil…", "info");
             conteudo.setAttribute("aria-busy", "true");
@@ -172,6 +198,7 @@
                 }
 
                 const perfil = usuario.perfil;
+                elemento("configurar-mfa").hidden = usuario.tipoUsuario !== "PROFISSIONAL";
 
                 const tipos = {
                     PROFISSIONAL: "Profissional",
@@ -238,6 +265,7 @@
                     descricao.replaceChildren(mensagem);
                 }
 
+                elemento("salvar-foto").disabled = false;
                 conteudo.hidden = false;
                 tentarNovamente.hidden = true;
 

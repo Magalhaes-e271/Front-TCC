@@ -354,9 +354,8 @@
         usuario = await window.Oficina.exigirSessao();
 
         if (usuario.tipoUsuario !== "PROFISSIONAL") {
-          throw new Error(
-              "Esta página está disponível para profissionais."
-          );
+          const adicionar = document.querySelector('a[href*="adicione_profissional"]');
+          if (adicionar) adicionar.hidden = true;
         }
 
         const resposta = await window.Oficina.get(

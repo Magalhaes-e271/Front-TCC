@@ -12,6 +12,8 @@
 
     const email = document.getElementById("email");
     const senha = document.getElementById("senha");
+    const codigo = document.getElementById("codigo-mfa");
+    const segundoFator = document.getElementById("login-mfa");
     const botao = document.getElementById("btn-entrar");
     const textoBotao = document.getElementById("texto-entrar");
     const toggle = document.getElementById("toggle-senha");
@@ -32,12 +34,13 @@
       botao.disabled = ativo;
       email.readOnly = ativo;
       senha.readOnly = ativo;
+      codigo.readOnly = ativo;
 
       form.setAttribute("aria-busy", String(ativo));
 
       textoBotao.textContent = ativo
           ? "Entrando…"
-          : "Entrar na minha conta";
+          : segundoFator.hidden ? "Entrar na minha conta" : "Confirmar e entrar";
     }
 
     toggle.addEventListener("click", () => {
@@ -69,6 +72,9 @@
     senha.addEventListener("blur", () => {
       capsLock.hidden = true;
     });
+    [email, senha].forEach(campo => campo.addEventListener("input", () => {
+      segundoFator.hidden = true; codigo.required = false; codigo.value = "";
+    }));
 
     form.addEventListener("input", () => {
       if (!enviando) {
@@ -141,7 +147,8 @@
 
           body: JSON.stringify({
             email: email.value,
-            senha: senha.value
+            senha: senha.value,
+            ...(codigo.value.trim() ? {codigo: codigo.value.trim()} : {})
           }),
 
           signal: controller.signal
@@ -157,6 +164,11 @@
         }
 
         if (!resposta.ok) {
+          if (resposta.status === 428 && dados?.codigo === "MFA_REQUIRED") {
+            segundoFator.hidden = false; codigo.required = true;
+            mostrarMensagem("Digite o código do autenticador para concluir o login.");
+            codigo.focus(); return;
+          }
           if (resposta.status === 401 || resposta.status === 403) {
             throw new Error("E-mail ou senha inválidos.");
           }
@@ -218,6 +230,7 @@
         }
 
         conectado = true;
+        senha.value = ""; codigo.value = "";
 
         window.location.replace("dashboard.html");
       } catch (erro) {

@@ -104,6 +104,13 @@
         </button>
       </div>
       <form id="form-login" novalidate>
+        <div id="login-mfa" hidden>
+          <p>Confirme sua identidade com o código do aplicativo autenticador ou um código de recuperação.</p>
+          <div class="campo">
+            <input id="codigo-mfa" name="codigo" type="text" maxlength="32" placeholder=" " autocomplete="one-time-code" spellcheck="false" autocapitalize="characters">
+            <label for="codigo-mfa">Código de verificação</label>
+          </div>
+        </div>
         <div class="campo">
           <input
                   id="email"

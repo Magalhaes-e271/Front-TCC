@@ -1,208 +1,705 @@
-@import url('../css/global.css');
-
-:root {
-  --page-bg: var(--cor-fundo);
-  --bar-bg: var(--cor-footer);
-  --panel-bg: var(--cor-card);
-  --field-bg: var(--cor-branco);
-  --field-border: var(--cor-borda);
-  --text-main: var(--cor-texto);
-  --text-soft: var(--cor-texto-suave);
-  --button-bg: var(--cor-primaria);
-  --button-hover: var(--cor-primaria-hover);
+/* Criação de alunos: identidade do cadastro profissional, com guia lateral. */
+.cadastro-aluno {
+  --aluno-suave: #f7f9fe;
+  --aluno-guia: #eef2ff;
+  --aluno-realce: #e1e8ff;
+  padding: 38px 24px 22px;
 }
-
-* {
-  box-sizing: border-box;
+html[data-tema="escuro"] .cadastro-aluno {
+  --aluno-suave: #1c273b;
+  --aluno-guia: #202d48;
+  --aluno-realce: #30436b;
 }
-
-body {
+.aluno-card {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-card);
+  background: var(--branco);
+  box-shadow: var(--sombra-card);
+}
+.aluno-cabecalho {
+  min-height: 86px;
+  padding: 20px 30px;
+  background: var(--branco);
+}
+.aluno-cabecalho .btn-voltar {
+  width: 44px;
+  height: 44px;
+  border-color: var(--borda);
+}
+.aluno-cabecalho .marca {
+  font-size: 18px;
+}
+.aluno-cabecalho .selo {
+  background: var(--aluno-guia);
+}
+.aluno-layout {
+  display: grid;
+  grid-template-columns: 304px minmax(0, 1fr);
+}
+.guia-cadastro {
+  display: flex;
+  flex-direction: column;
+  padding: 38px 28px 28px;
+  border-right: 1px solid var(--borda);
+  background: var(--aluno-guia);
+}
+.icone-guia {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 25px;
+  border: 1px solid color-mix(in srgb, var(--azul) 20%, transparent);
+  border-radius: 17px;
+  color: var(--azul);
+  background: var(--branco);
+}
+.icone-guia svg {
+  width: 31px;
+  height: 31px;
+}
+.guia-cadastro svg,
+.foto-miniatura svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.guia-introducao .sobretitulo {
+  margin-bottom: 11px;
+  font-size: 10px;
+  letter-spacing: 1.8px;
+}
+.guia-introducao h2 {
+  margin: 0 0 15px;
+  font-family: var(--fonte-titulo);
+  color: var(--texto);
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.24;
+}
+.guia-introducao > p:last-child {
   margin: 0;
-  min-height: 100vh;
-  background: var(--page-bg);
-  color: var(--text-main);
-  font-family: var(--fonte-base);
+  color: var(--suave);
+  font-size: 13px;
+  line-height: 1.8;
 }
-
-.topbar {
-  height: 62px;
+.passos-aluno {
+  display: grid;
+  gap: 10px;
+  margin: 34px -8px 30px;
+  padding: 0;
+  list-style: none;
+}
+.passos-aluno li {
   display: flex;
   align-items: center;
-  padding: 0 18px;
-  background: var(--bar-bg);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  gap: 12px;
+  min-width: 0;
+  padding: 14px 10px;
+  border: 1px solid transparent;
+  border-radius: 14px;
 }
-
-.back-btn {
+.passo-numero {
+  display: grid;
+  place-items: center;
+  flex: 0 0 32px;
+  height: 32px;
+  border: 1px solid var(--borda);
+  border-radius: 50%;
+  color: var(--suave);
+  font-size: 11px;
+  font-weight: 700;
+}
+.passos-aluno li > div {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+.passos-aluno strong {
+  color: var(--suave);
+  font-size: 12px;
+  font-weight: 600;
+}
+.passo-texto-curto {
+  display: none;
+}
+.passos-aluno div > span {
+  color: var(--suave);
+  font-size: 11px;
+  line-height: 1.4;
+}
+.passos-aluno li[aria-current="step"] {
+  border-color: var(--borda);
+  background: var(--branco);
+  box-shadow: 0 3px 10px rgba(26, 26, 46, 0.03);
+}
+.passos-aluno [aria-current="step"] strong {
+  color: var(--azul);
+}
+.passos-aluno [aria-current="step"] .passo-numero {
+  border-color: var(--azul);
+  background: var(--azul);
+  color: var(--texto-inverso, #fff);
+}
+.guia-rodape {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: auto 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--borda);
+  color: var(--suave);
+  font-size: 11px;
+  line-height: 1.7;
+}
+.guia-rodape svg {
+  width: 21px;
+  height: 21px;
+  flex: 0 0 21px;
+  color: var(--azul);
+}
+.aluno-conteudo {
+  min-width: 0;
+  padding: 39px 42px 24px;
+}
+.introducao-aluno {
+  margin-bottom: 31px;
+}
+.introducao-aluno .sobretitulo {
+  margin-bottom: 12px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+.introducao-aluno h1 {
+  margin-bottom: 14px;
+  font-size: clamp(29px, 3.2vw, 36px);
+  line-height: 1.16;
+}
+.introducao-aluno > p:last-child {
+  max-width: 520px;
+  margin: 0;
+  color: var(--suave);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.dados-aluno,
+.foto-aluno {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.dados-aluno legend,
+.foto-aluno legend {
+  padding: 0;
+  color: var(--texto);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.campos-obrigatorios {
+  margin: 6px 0 19px;
+  color: var(--suave);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.campos-aluno {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.campo-inteiro {
+  grid-column: 1/-1;
+}
+.cadastro-aluno .campo input,
+.cadastro-aluno .campo textarea {
+  min-height: 61px;
+  background: var(--aluno-suave);
+}
+.cadastro-aluno .campo input:focus,
+.cadastro-aluno .campo textarea:focus {
+  background: var(--branco);
+}
+.cadastro-aluno .campo textarea {
+  min-height: 205px;
+  resize: vertical;
+}
+.parte-aluno[hidden] {
+  display: none;
+}
+.parte-aluno > h2 {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.aviso-vinculo-aluno {
+  margin: 24px 0 0;
+  padding: 16px 18px;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  background: var(--aluno-guia);
+  color: var(--suave);
+  font-size: 12px;
+  line-height: 1.7;
+}
+.voltar-etapa-aluno {
+  min-height: 44px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--azul);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.profissional-automatico {
+  display: grid;
+  gap: 8px;
+  margin: 22px 0;
+  padding: 18px;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  background: var(--aluno-guia);
+}
+.profissional-automatico strong {
+  color: var(--texto);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.profissional-automatico > span:last-child {
+  color: var(--suave);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.selo-equipe {
+  color: var(--azul);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+.busca-equipe-aluno {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+.busca-equipe-aluno .campo {
+  flex: 1;
+  min-width: 0;
+}
+.botao-equipe-aluno {
+  padding: 10px 15px;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background: var(--branco);
+  color: var(--azul);
+  font-size: 12px;
+  font-weight: 600;
+}
+.resultados-equipe-aluno {
+  display: grid;
+  gap: 9px;
+  max-height: 310px;
+  margin-top: 16px;
+  overflow-y: auto;
+}
+.opcao-equipe-aluno {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.opcao-equipe-aluno:has(input:checked) {
+  border-color: var(--azul);
+  background: var(--aluno-guia);
+}
+.opcao-equipe-aluno input {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--azul);
+}
+.opcao-equipe-aluno > span {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+.opcao-equipe-aluno strong {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.opcao-equipe-aluno small {
+  color: var(--suave);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.selecionados-equipe-aluno {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.selecionados-equipe-aluno button {
+  max-width: 100%;
+  padding: 8px 11px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background: var(--aluno-guia);
+  color: var(--azul);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.ajuda-aluno {
+  display: block;
+  margin: 9px 2px 0;
+  color: var(--suave);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.foto-aluno {
+  margin-top: 28px;
+}
+.foto-aluno legend > span {
+  margin-left: 8px;
+  color: var(--suave);
+  font-size: 10px;
+  font-weight: 400;
+}
+.foto-conteudo-aluno {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  margin-top: 15px;
+  padding: 19px;
+  border: 1px dashed var(--borda);
+  border-radius: 17px;
+  background: var(--aluno-suave);
+}
+.foto-miniatura {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  overflow: hidden;
+  flex: 0 0 88px;
+  border: 1px solid var(--borda);
+  border-radius: 24px;
+  background: var(--aluno-realce);
+  color: var(--azul);
+}
+.foto-miniatura svg {
+  display: block;
+  width: 39px;
+  height: 39px;
+}
+.foto-miniatura img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.foto-acoes-aluno {
+  min-width: 0;
+}
+.foto-acoes-aluno > p:first-child {
+  margin: 0 0 11px;
+  color: var(--suave);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.foto-botoes-aluno {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px 16px;
+}
+.selecionar-foto {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: transparent;
-  color: var(--cor-branco);
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  border-radius: var(--raio-input);
-  padding: 0.45rem 1rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity var(--transicao-rapida);
-}
-
-.back-btn:hover {
-  opacity: 0.9;
-}
-
-.page-shell {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 42px 32px 54px;
-}
-
-.patient-form {
-  width: 100%;
-  min-height: 560px;
-  display: flex;
-  flex-direction: column;
-}
-
-.patient-form h1 {
-  margin: 0 0 28px;
-  color: var(--text-main);
-  font-size: clamp(2rem, 2vw, 2.5rem);
-  line-height: 1.2;
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background: var(--branco);
+  color: var(--azul);
+  font-size: 11px;
   font-weight: 700;
-}
-
-.form-content {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: clamp(90px, 12vw, 170px);
-  flex: 1;
-}
-
-.field-group {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  width: min(100%, 520px);
-  justify-content: center;
-}
-
-.form-input {
-  width: 100%;
-  height: 68px;
-  padding: 0 18px;
-  border: 2px solid var(--field-border);
-  border-radius: var(--raio-input);
-  background: var(--field-bg);
-  color: var(--text-main);
-  font-size: 1.1rem;
-  outline: none;
-  transition: border-color var(--transicao-rapida), box-shadow var(--transicao-rapida);
-}
-
-.form-input::placeholder {
-  color: var(--text-soft);
-}
-
-.form-input:focus {
-  border-color: var(--cor-primaria);
-  box-shadow: 0 0 0 2px rgba(60, 90, 225, 0.15);
-}
-
-.photo-box {
-  width: 440px;
-  height: calc(4 * 68px + 3 * 28px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--field-border);
-  border-radius: var(--raio-card);
-  background: var(--panel-bg);
-  color: var(--text-main);
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-top: 0;
-  align-self: center;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: border-color var(--transicao-rapida), box-shadow var(--transicao-rapida), transform var(--transicao-rapida);
-}
-
-.photo-box:hover {
-  border-color: var(--cor-primaria);
-  box-shadow: 0 0 0 2px rgba(60, 90, 225, 0.12);
-  transform: translateY(-1px);
-}
-
-.photo-box input {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
   cursor: pointer;
 }
-
-.photo-box span {
-  pointer-events: none;
+.selecionar-foto svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
-
-.actions {
+.selecionar-foto:hover {
+  border-color: var(--azul);
+}
+.selecionar-foto:focus-within {
+  outline: 3px solid var(--azul);
+  outline-offset: 3px;
+}
+.remover-foto-aluno {
+  min-height: 38px;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: var(--suave);
+  font-size: 11px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.remover-foto-aluno:hover {
+  color: var(--erro);
+}
+.foto-nome {
+  margin: 9px 0 0;
+  color: var(--suave);
+  font-size: 10px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.foto-acoes-aluno .erro-campo {
+  margin-top: 8px;
+  font-size: 11px;
+}
+.acoes-aluno {
   display: flex;
-  justify-content: flex-end;
-  margin-top: auto;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--borda);
 }
-
-.next-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  min-width: 170px;
-  padding: 0.9rem 1.5rem;
-  border: none;
+.contador-aluno {
+  margin-right: auto;
+  color: var(--suave);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.btn-continuar-aluno {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+  min-height: 46px;
+  padding: 13px 22px;
+  border: 1px solid var(--azul);
   border-radius: var(--raio-botao);
-  background: var(--button-bg);
-  color: var(--cor-branco);
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color var(--transicao-rapida), transform var(--transicao-rapida);
+  background: var(--azul);
+  color: var(--texto-inverso, #fff);
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: var(--sombra-botao);
+  transition:
+    background-color var(--transicao-rapida),
+    border-color var(--transicao-rapida);
 }
-
-.next-btn:hover {
-  background: var(--button-hover);
-  transform: translateY(-1px);
+.btn-continuar-aluno:hover {
+  border-color: var(--azul-hover);
+  background: var(--azul-hover);
 }
-
-@media (max-width: 760px) {
-  .page-shell {
-    padding: 26px 18px 42px;
+.btn-continuar-aluno svg {
+  width: 18px;
+  height: 18px;
+}
+.nota-cadastro-aluno {
+  margin: 13px 0 0;
+  color: var(--suave);
+  font-size: 10px;
+  line-height: 1.7;
+  text-align: right;
+}
+.cadastro-aluno .api-mensagem {
+  margin: 22px 0 0;
+}
+.assinatura-aluno {
+  margin: 19px 0 0;
+  color: var(--suave);
+  font-size: 10px;
+  letter-spacing: 0.4px;
+  line-height: 1.7;
+  text-align: center;
+}
+@media (max-width: 900px) {
+  .aluno-layout {
+    grid-template-columns: 244px minmax(0, 1fr);
   }
-
-  .patient-form {
-    min-height: auto;
+  .guia-cadastro {
+    padding: 31px 21px 24px;
   }
-
-  .form-content {
+  .guia-introducao h2 {
+    font-size: 27px;
+  }
+  .aluno-conteudo {
+    padding: 32px 27px 24px;
+  }
+}
+@media (max-width: 700px) {
+  .cadastro-aluno {
+    padding: 16px 12px 20px;
+  }
+  .aluno-card {
+    border-radius: 23px;
+  }
+  .aluno-cabecalho {
+    min-height: 75px;
+    gap: 11px;
+    padding: 14px 18px;
+  }
+  .aluno-cabecalho .marca {
+    font-size: 16px;
+  }
+  .aluno-cabecalho .selo {
+    display: none;
+  }
+  .aluno-cabecalho .btn-tema {
+    margin-left: auto;
+  }
+  .aluno-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .guia-cadastro {
+    padding: 19px 20px;
+    border-right: 0;
+    border-bottom: 1px solid var(--borda);
+  }
+  .guia-introducao,
+  .guia-rodape {
+    display: none;
+  }
+  .passos-aluno {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: 8px;
+    margin: 0;
+  }
+  .passos-aluno li {
     flex-direction: column;
-    align-items: stretch;
-    gap: 24px;
-    margin-right: 50px;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
   }
-
-  .field-group {
+  .passos-aluno li[aria-current="step"] {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .passos-aluno li > div {
+    gap: 0;
+  }
+  .passos-aluno strong {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  .passos-aluno .passo-texto-longo {
+    display: none;
+  }
+  .passos-aluno .passo-texto-curto {
+    display: inline;
+  }
+  .passos-aluno div > span {
+    display: none;
+  }
+  .passo-numero {
+    width: 29px;
+    height: 29px;
+    flex: 0 0 29px;
+    font-size: 10px;
+  }
+  .aluno-conteudo {
+    padding: 27px 22px 23px;
+  }
+  .introducao-aluno {
+    margin-bottom: 27px;
+  }
+  .introducao-aluno .sobretitulo {
+    font-size: 9px;
+    letter-spacing: 1.1px;
+  }
+  .introducao-aluno h1 {
+    max-width: 290px;
+    font-size: 30px;
+  }
+  .introducao-aluno > p:last-child {
+    font-size: 12px;
+  }
+  .campos-aluno {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .busca-equipe-aluno {
+    flex-direction: column;
+  }
+  .botao-equipe-aluno {
+    min-height: 43px;
+  }
+  .foto-conteudo-aluno {
+    gap: 14px;
+    padding: 15px 13px;
+  }
+  .foto-miniatura {
+    width: 66px;
+    height: 66px;
+    flex-basis: 66px;
+    border-radius: 18px;
+  }
+  .foto-miniatura svg {
+    width: 31px;
+    height: 31px;
+  }
+  .foto-botoes-aluno {
+    gap: 4px 12px;
+  }
+  .foto-aluno {
+    margin-top: 24px;
+  }
+  .acoes-aluno {
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 10px;
+  }
+  .contador-aluno {
+    max-width: 110px;
+    font-size: 10px;
+  }
+  .voltar-etapa-aluno:not([hidden]) + .contador-aluno {
+    flex-basis: calc(100% - 80px);
+    max-width: none;
+    text-align: right;
+  }
+  .voltar-etapa-aluno:not([hidden]) ~ .btn-continuar-aluno {
     width: 100%;
   }
-
-  .photo-box {
-    width: 400px;
-    height: 220px;
-    margin-top: 0;
+  .btn-continuar-aluno {
+    gap: 12px;
+    padding-right: 17px;
+    padding-left: 17px;
   }
-
-  .actions {
-    justify-content: flex-end;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cadastro-aluno *,
+  .cadastro-aluno *::before,
+  .cadastro-aluno *::after {
+    transition: none !important;
   }
 }

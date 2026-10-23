@@ -10,6 +10,6 @@
     const formacao = document.getElementById('user-formacao');
     if (formacao) formacao.textContent = u.perfil?.formacao || u.perfil?.ocupacao || '';
     const img = document.getElementById('user-img'); if (img) Oficina.imagem(img, u.perfil?.urlFotoPerfil);
-    if (u.tipoUsuario === 'PACIENTE') ['btn-profissionais','btn-agenda'].forEach(id => { const e = document.getElementById(id); if(e) e.hidden = true; });
+    if (u.tipoUsuario === 'PACIENTE') ['btn-agenda'].forEach(id => { const e = document.getElementById(id); if(e) e.hidden = true; });
   }).catch(e => Oficina.mensagem(document.getElementById('pagina-erro'), e.message));
 })();

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Paciente e equipe | Oficina Aprender</title><link rel="stylesheet" href="../assets/css/global.css"><link rel="stylesheet" href="../assets/css/gestao.css"></head>
+<body><main class="gestao-pagina">
+<header class="gestao-topo"><a href="dashboard.html">← Painel</a><h1 id="paciente-titulo">Paciente e equipe</h1><a id="abrir-metas" href="dashboard.html">Metas e registros →</a></header>
+<p id="pagina-erro" class="gestao-mensagem" role="status" hidden></p>
+<div id="conteudo-paciente" class="gestao-grade" hidden>
+<section class="gestao-card"><h2>Informações do paciente</h2><img id="paciente-foto" class="gestao-avatar" src="../assets/icons/user-icon.png" alt="Foto do paciente">
+<form id="form-paciente" class="gestao-form">
+<label for="paciente-nome">Nome</label><input id="paciente-nome" maxlength="200" required>
+<label for="paciente-email">E-mail de acesso</label><input id="paciente-email" type="email" readonly>
+<label for="paciente-nascimento">Data de nascimento</label><input id="paciente-nascimento" type="date" min="1900-01-01" required>
+<label for="paciente-telefone">Telefone</label><input id="paciente-telefone" type="tel" maxlength="30">
+<label for="paciente-condicao">Condições</label><textarea id="paciente-condicao" maxlength="2000"></textarea>
+<label for="paciente-descricao">Descrição do acompanhamento</label><textarea id="paciente-descricao" maxlength="20000"></textarea>
+<label for="paciente-nova-foto">Nova foto opcional</label><input id="paciente-nova-foto" type="file" accept="image/png,image/jpeg,image/gif">
+<button id="salvar-paciente" type="submit" class="gestao-botao">Salvar informações</button></form>
+</section>
+<section class="gestao-card"><h2>Equipe de acompanhamento</h2><p>Os convites liberam o acompanhamento após o aceite do profissional.</p><ul id="paciente-equipe" class="gestao-lista"></ul>
+<form id="form-convite" class="gestao-form"><label for="buscar-profissional">Buscar profissional pelo nome</label><div class="gestao-acoes"><input id="buscar-profissional" maxlength="100"><button id="botao-buscar" class="gestao-botao secundario" type="button">Buscar</button></div>
+<label for="selecionar-profissional">Profissional</label><select id="selecionar-profissional" required><option value="">Faça uma busca</option></select><button class="gestao-botao" type="submit">Enviar convite</button></form>
+<div id="ativacao-paciente" hidden><h2>Acesso do paciente</h2><p id="ativacao-ajuda">Gere um link para o paciente escolher a própria senha. O link vale por 24 horas e funciona uma vez.</p><button id="gerar-ativacao" class="gestao-botao secundario" type="button">Gerar link de acesso</button><div id="ativacao-resultado" hidden><label for="link-ativacao">Link de ativação</label><input id="link-ativacao" class="gestao-link" readonly><button id="copiar-ativacao" class="gestao-botao secundario" type="button">Copiar link</button></div></div>
+</section></div></main>
+<script src="../assets/js/config.js"></script><script src="../assets/js/utils.js"></script><script src="../assets/js/paciente-detalhes.js"></script><script src="../assets/js/tema.js"></script></body></html>

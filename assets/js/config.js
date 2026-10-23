@@ -1,11 +1,7 @@
-
-// assets/js/config.js
-// Substitua o conteúdo por:
-
+// O site e a API deste pacote compartilham a origem pelo proxy /api.
 window.OFICINA_CONFIG = Object.freeze({
-  apiBase: "https://oficina-aprender-api.onrender.com",
-  //apiBase: "http://localhost:8080",
-  timeoutMs: 20000,
+  apiBase: "http://localhost:8181",
+  timeoutMs: 120000,
   healthPath: "/health",
   conexaoTimeoutMs: 120000
 });

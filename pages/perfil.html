@@ -8,6 +8,7 @@
     <title>Meu perfil | OficinaAprender+</title>
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/perfil.css">
+    <link rel="stylesheet" href="../assets/css/gestao.css">
 </head>
 
 <body>
@@ -132,6 +133,14 @@
                             </div>
 
                             <div class="linha-dado">
+                                <dt>Atualizar foto</dt>
+                                <dd class="valor">
+                                    <label for="nova-foto">Escolha PNG, JPEG ou GIF de até 10 MB</label>
+                                    <input id="nova-foto" type="file" accept="image/png,image/jpeg,image/gif">
+                                    <button id="salvar-foto" class="gestao-botao" type="button" disabled>Salvar foto</button>
+                                </dd>
+                            </div>
+                            <div class="linha-dado">
                                 <dt>Nome completo</dt>
                                 <dd id="perfil-nome" class="valor">—</dd>
 
@@ -192,6 +201,22 @@
                                 <dd id="perfil-tipo" class="valor">—</dd>
                             </div>
                         </dl>
+                        <p><a id="configurar-mfa" href="seguranca.html" hidden>Configurar verificação em duas etapas</a></p>
+                        <details class="gestao-detalhes">
+                            <summary>Alterar minha senha</summary>
+                            <form id="form-senha" class="gestao-form">
+                                <label for="senha-atual">Senha atual</label>
+                                <input id="senha-atual" type="password" autocomplete="current-password" required>
+                                <label for="codigo-senha">Código do autenticador ou recuperação, se a verificação em duas etapas estiver ativa</label>
+                                <input id="codigo-senha" type="text" autocomplete="one-time-code" maxlength="32" spellcheck="false">
+                                <label for="nova-senha">Nova senha</label>
+                                <input id="nova-senha" type="password" autocomplete="new-password" minlength="8" required>
+                                <label for="confirmar-nova-senha">Confirme a nova senha</label>
+                                <input id="confirmar-nova-senha" type="password" autocomplete="new-password" minlength="8" required>
+                                <p>Ao salvar, você entrará novamente com a nova senha.</p>
+                                <button type="submit" class="gestao-botao">Salvar nova senha</button>
+                            </form>
+                        </details>
                     </article>
                 </section>
 
