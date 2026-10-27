@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Novo aluno | OficinaAprender+</title>
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <link rel="stylesheet" href="../assets/css/criar_paciente.css" />
+    <script src="../assets/js/tema.js"></script>
+  </head>
+  <body class="cadastro-aluno">
+    <main class="aluno-card">
+      <header class="card-header aluno-cabecalho">
+        <a
+          class="btn-voltar"
+          href="dashboard.html"
+          aria-label="Voltar à lista de alunos"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m14 6-6 6 6 6M8 12h12"></path>
+          </svg>
+        </a>
+        <a class="marca" href="dashboard.html">Oficina<span>Aprender+</span></a>
+        <span class="selo">Novo aluno</span>
+      </header>
+      <div class="aluno-layout">
+        <aside class="guia-cadastro" aria-labelledby="titulo-guia">
+          <div class="guia-introducao">
+            <span class="icone-guia" aria-hidden="true">
+              <svg viewBox="0 0 32 32">
+                <path
+                  d="M5 7c4-1 8 0 11 2 3-2 7-3 11-2v19c-4-1-8 0-11 2-3-2-7-3-11-2ZM16 9v19"
+                ></path>
+                <path d="M10 13h2M10 18h2M21 13h2M21 18h2"></path>
+              </svg>
+            </span>
+            <p class="sobretitulo">UM NOVO COMEÇO</p>
+            <h2 id="titulo-guia">Cada aluno,<br />uma trajetória.</h2>
+            <p>
+              Organize as primeiras informações para acompanhar a aprendizagem
+              com mais cuidado.
+            </p>
+          </div>
+          <ol class="passos-aluno" aria-label="Etapas do cadastro do aluno">
+            <li aria-current="step">
+              <span class="passo-numero" aria-hidden="true">01</span>
+              <div>
+                <strong>Dados do aluno</strong
+                ><span>Identificação e contato</span>
+              </div>
+            </li>
+            <li>
+              <span class="passo-numero" aria-hidden="true">02</span>
+              <div>
+                <strong
+                  ><span class="passo-texto-longo">Acompanhamento</span
+                  ><span class="passo-texto-curto">Contexto</span></strong
+                ><span>Contexto e necessidades</span>
+              </div>
+            </li>
+            <li>
+              <span class="passo-numero" aria-hidden="true">03</span>
+              <div>
+                <strong>Equipe de apoio</strong
+                ><span>Profissionais envolvidos</span>
+              </div>
+            </li>
+          </ol>
+          <p class="guia-rodape">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m12 3 8 3v6c0 5-8 9-8 9S4 17 4 12V6Z"></path>
+              <path d="m8 12 3 3 5-6"></path>
+            </svg>
+            <span
+              >Um passo de cada vez.<br />Você poderá editar o perfil
+              depois.</span
+            >
+          </p>
+        </aside>
+        <section class="aluno-conteudo" aria-labelledby="titulo-pagina">
+          <div class="introducao-aluno">
+            <p class="sobretitulo" id="etapa-aluno" aria-live="polite">
+              ETAPA 1 DE 3 · DADOS DO ALUNO
+            </p>
+            <h1 id="titulo-pagina" tabindex="-1">Vamos conhecer o aluno</h1>
+            <p id="introducao-etapa">
+              Comece pela identificação e pelos dados de contato. Nas próximas
+              etapas, você complementa o acompanhamento e a equipe.
+            </p>
+          </div>
+          <form id="patientForm" novalidate>
+            <section
+              id="parte-dados-aluno"
+              class="parte-aluno"
+              aria-labelledby="titulo-dados-aluno"
+            >
+              <h2 id="titulo-dados-aluno" class="sr-only">Dados do aluno</h2>
+              <fieldset class="dados-aluno">
+                <legend>Informações pessoais</legend>
+                <p class="campos-obrigatorios">
+                  Os campos com <span aria-hidden="true">*</span> são
+                  obrigatórios.
+                </p>
+                <div class="campos-aluno">
+                  <div class="campo campo-inteiro">
+                    <input
+                      id="nome"
+                      name="nome"
+                      type="text"
+                      placeholder=" "
+                      autocomplete="name"
+                      maxlength="255"
+                      required
+                    />
+                    <label for="nome">Nome completo *</label>
+                  </div>
+                  <div class="campo campo-data">
+                    <input
+                      id="dataNascimento"
+                      name="dataNascimento"
+                      type="date"
+                      autocomplete="bday"
+                      required
+                    />
+                    <label for="dataNascimento">Data de nascimento *</label>
+                  </div>
+                  <div class="campo">
+                    <input
+                      id="celular"
+                      name="celular"
+                      type="tel"
+                      placeholder=" "
+                      autocomplete="tel"
+                      inputmode="tel"
+                      maxlength="20"
+                      required
+                    />
+                    <label for="celular">Celular com DDD *</label>
+                  </div>
+                  <div class="campo campo-inteiro">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder=" "
+                      autocomplete="email"
+                      maxlength="255"
+                      aria-describedby="email-ajuda"
+                      required
+                    />
+                    <label for="email">E-mail do aluno *</label>
+                    <span id="email-ajuda" class="ajuda-aluno"
+                      >Esse e-mail será usado na ativação do acesso do
+                      aluno.</span
+                    >
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="foto-aluno">
+                <legend>Foto de identificação <span>Opcional</span></legend>
+                <div class="foto-conteudo-aluno">
+                  <div class="foto-miniatura">
+                    <span id="foto-placeholder" aria-hidden="true"
+                      ><svg viewBox="0 0 32 32">
+                        <circle cx="16" cy="11" r="5"></circle>
+                        <path d="M6 29v-3a10 10 0 0 1 20 0v3"></path></svg
+                    ></span>
+                    <img
+                      id="aluno-foto-preview"
+                      alt="Prévia da foto do aluno"
+                      width="88"
+                      height="88"
+                      hidden
+                    />
+                  </div>
+                  <div class="foto-acoes-aluno">
+                    <p id="foto-ajuda">PNG, JPEG ou GIF. Até 2 MB.</p>
+                    <div class="foto-botoes-aluno">
+                      <label class="selecionar-foto" for="foto-paciente">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M14 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-9M17 3h6M20 0v6"
+                          ></path>
+                          <circle cx="8" cy="10" r="2"></circle>
+                          <path d="m3 18 5-4 4 3 3-4 5 4"></path>
+                        </svg>
+                        <span id="foto-botao-texto">Escolher foto</span>
+                        <input
+                          class="sr-only"
+                          id="foto-paciente"
+                          name="foto"
+                          type="file"
+                          accept="image/png,image/jpeg,image/gif"
+                          aria-describedby="foto-ajuda foto-nome foto-erro"
+                        />
+                      </label>
+                      <button
+                        id="remover-foto-aluno"
+                        class="remover-foto-aluno"
+                        type="button"
+                        hidden
+                      >
+                        Remover
+                      </button>
+                    </div>
+                    <p id="foto-nome" class="foto-nome" aria-live="polite">
+                      Nenhuma foto selecionada.
+                    </p>
+                    <p
+                      id="foto-erro"
+                      class="erro-campo"
+                      role="alert"
+                      hidden
+                    ></p>
+                  </div>
+                </div>
+              </fieldset>
+            </section>
+            <section
+              id="parte-acompanhamento"
+              class="parte-aluno"
+              aria-labelledby="titulo-acompanhamento"
+              hidden
+            >
+              <h2 id="titulo-acompanhamento">Contexto e necessidades</h2>
+              <p class="campos-obrigatorios">
+                Conte o que é importante para acompanhar o aluno. Os campos com
+                * são obrigatórios.
+              </p>
+              <div class="campos-aluno">
+                <div class="campo campo-inteiro">
+                  <input
+                    id="condicao"
+                    name="condicao"
+                    type="text"
+                    placeholder=" "
+                    maxlength="2000"
+                    required
+                    aria-describedby="condicao-ajuda"
+                  />
+                  <label for="condicao">Condições do aluno *</label>
+                  <span id="condicao-ajuda" class="ajuda-aluno"
+                    >Informe as condições e necessidades relevantes para o
+                    acompanhamento.</span
+                  >
+                </div>
+                <div class="campo campo-inteiro">
+                  <textarea
+                    id="problemas"
+                    name="problemas"
+                    rows="7"
+                    placeholder=" "
+                    required
+                    aria-describedby="problemas-ajuda"
+                  ></textarea>
+                  <label for="problemas">Descrição e dificuldades *</label>
+                  <span id="problemas-ajuda" class="ajuda-aluno"
+                    >Descreva os desafios e as informações que podem ajudar a
+                    equipe.</span
+                  >
+                </div>
+              </div>
+              <p class="aviso-vinculo-aluno">
+                Ao concluir o cadastro, o aluno será vinculado automaticamente a
+                você. Convidar outros profissionais é opcional.
+              </p>
+            </section>
+            <section
+              id="parte-equipe"
+              class="parte-aluno"
+              aria-labelledby="titulo-equipe"
+              hidden
+            >
+              <h2 id="titulo-equipe">Quem acompanha o aluno?</h2>
+              <p class="campos-obrigatorios">
+                Você já faz parte da equipe. Se quiser, convide outros
+                profissionais para acompanhar o aluno.
+              </p>
+              <div class="profissional-automatico">
+                <span class="selo-equipe">Vínculo automático</span>
+                <strong id="profissional-criador"
+                  >Seu perfil profissional</strong
+                >
+                <span>O aluno será adicionado à sua lista ao concluir.</span>
+              </div>
+              <div class="busca-equipe-aluno">
+                <div class="campo">
+                  <input
+                    id="buscar-equipe-aluno"
+                    type="search"
+                    placeholder=" "
+                    maxlength="255"
+                    disabled
+                  />
+                  <label for="buscar-equipe-aluno"
+                    >Nome ou e-mail do profissional</label
+                  >
+                </div>
+                <button
+                  id="pesquisar-equipe-aluno"
+                  class="botao-equipe-aluno"
+                  type="button"
+                  disabled
+                >
+                  Pesquisar
+                </button>
+              </div>
+              <p
+                id="estado-equipe-aluno"
+                class="ajuda-aluno"
+                role="status"
+                aria-live="polite"
+              ></p>
+              <div
+                id="resultados-equipe-aluno"
+                class="resultados-equipe-aluno"
+                role="group"
+                aria-label="Profissionais disponíveis"
+              ></div>
+              <div class="selecao-equipe-aluno">
+                <p
+                  id="contador-equipe-aluno"
+                  class="ajuda-aluno"
+                  aria-live="polite"
+                >
+                  Nenhum convite selecionado.
+                </p>
+                <ul
+                  id="selecionados-equipe-aluno"
+                  class="selecionados-equipe-aluno"
+                  aria-label="Profissionais selecionados"
+                ></ul>
+              </div>
+              <p class="aviso-vinculo-aluno">
+                Os profissionais convidados precisarão aceitar o convite. Você
+                pode concluir sem adicionar outros profissionais.
+              </p>
+            </section>
+            <p
+              id="pagina-erro"
+              class="api-mensagem"
+              role="alert"
+              tabindex="-1"
+              hidden
+            ></p>
+            <div class="acoes-aluno">
+              <button
+                id="voltar-etapa-aluno"
+                class="voltar-etapa-aluno"
+                type="button"
+                hidden
+              >
+                ← Voltar
+              </button>
+              <span id="contador-aluno" class="contador-aluno"
+                >Próximo: acompanhamento</span
+              >
+              <button
+                id="continuar-aluno"
+                class="btn-continuar-aluno"
+                type="submit"
+                disabled
+              >
+                <span id="continuar-texto-aluno">Continuar</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 12h16m-6-6 6 6-6 6"></path>
+                </svg>
+              </button>
+            </div>
+            <p class="nota-cadastro-aluno">
+              Ao concluir, os dados, a descrição e os convites serão enviados ao
+              servidor.
+            </p>
+          </form>
+        </section>
+      </div>
+    </main>
+    <p class="assinatura-aluno">Cuidado, organização e aprendizagem.</p>
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/paciente.js"></script>
+  </body>
+</html>

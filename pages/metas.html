@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metas do aluno | OficinaAprender+</title>
+    <script src="../assets/js/tema.js"></script>
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <link rel="stylesheet" href="../assets/css/metas.css" />
+  </head>
+  <body class="pagina-metas">
+    <main id="metas-pagina" class="metas-pagina">
+      <header class="card-header metas-topo">
+        <a
+          id="btnVoltar"
+          class="btn-voltar"
+          href="dashboard.html"
+          aria-label="Voltar à lista de alunos"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m14 6-6 6 6 6M8 12h12"></path>
+          </svg>
+        </a>
+        <a class="marca" href="dashboard.html">Oficina<span>Aprender+</span></a>
+        <span class="selo">Acompanhamento do aluno</span>
+      </header>
+      <div class="metas-conteudo">
+        <div class="titulo-pagina-metas">
+          <div>
+            <p class="sobretitulo">CADA CONQUISTA CONTA</p>
+            <h1>Metas de aprendizagem</h1>
+            <p>Um olhar para o caminho e para cada passo do aluno.</p>
+          </div>
+          <nav class="atalhos-aluno" aria-label="Acompanhamento do aluno">
+            <a
+              id="dados-paciente"
+              class="botao-meta secundario"
+              href="dashboard.html"
+              >Dados e equipe <span aria-hidden="true">↗</span></a
+            >
+          </nav>
+        </div>
+        <section class="resumo-aluno" aria-label="Aluno e progresso">
+          <div id="paciente-area" class="paciente-collapsed">
+            <div class="principal">
+              <img
+                id="foto-perfil"
+                src="../assets/icons/user-icon.png"
+                alt="Foto do aluno"
+                width="68"
+                height="68"
+              />
+              <div class="txt-principal">
+                <span class="legenda-aluno">ALUNO EM ACOMPANHAMENTO</span>
+                <h2 id="nome-idade">Carregando aluno…</h2>
+                <span id="condicoes">Consultando informações</span>
+              </div>
+            </div>
+            <div class="descricao-paciente-container">
+              <div
+                id="descricao-paciente"
+                class="descricao-paciente-collapsed"
+              ></div>
+              <button
+                class="expand-desc-pac"
+                id="expand-descricao"
+                type="button"
+                aria-expanded="false"
+                aria-controls="descricao-paciente"
+              >
+                Ver descrição completa
+              </button>
+            </div>
+          </div>
+          <div class="progresso-aluno" aria-live="polite">
+            <div class="progresso-cabecalho">
+              <span>Progresso das metas</span
+              ><strong id="progresso-valor">—</strong>
+            </div>
+            <progress
+              id="progresso-metas"
+              max="100"
+              value="0"
+              aria-label="Percentual de metas concluídas"
+            ></progress>
+            <dl class="numeros-metas">
+              <div>
+                <dt>Total</dt>
+                <dd id="total-metas">—</dd>
+              </div>
+              <div>
+                <dt>Em andamento</dt>
+                <dd id="andamento-metas">—</dd>
+              </div>
+              <div>
+                <dt>Concluídas</dt>
+                <dd id="concluidas-metas">—</dd>
+              </div>
+            </dl>
+            <p>Pequenos avanços constroem novas possibilidades.</p>
+          </div>
+        </section>
+        <p
+          id="pagina-erro"
+          class="api-mensagem"
+          role="status"
+          aria-live="polite"
+          tabindex="-1"
+          hidden=""
+        ></p>
+        <section class="trilha-metas" aria-labelledby="titulo-trilha">
+          <header class="trilha-cabecalho">
+            <div>
+              <p class="sobretitulo">PLANEJAR E ACOMPANHAR</p>
+              <h2 id="titulo-trilha">Trilha de aprendizagem</h2>
+              <p id="metas-visiveis" aria-live="polite">Carregando metas…</p>
+            </div>
+            <div class="acoes-trilha">
+              <button
+                class="botao-meta secundario"
+                id="recarregar"
+                type="button"
+              >
+                ↻ Atualizar
+              </button>
+              <button
+                class="botao-meta"
+                id="abrir-nova-meta"
+                type="button"
+                aria-expanded="false"
+                aria-controls="nova-meta-area"
+                hidden=""
+              >
+                + Nova meta
+              </button>
+            </div>
+          </header>
+
+          <section class="colab-equipe" aria-label="Colaboração da equipe">
+            <div>
+              <span class="selo-colab">ESPAÇO DA EQUIPE</span
+              ><strong id="colab-resumo">Metas compartilhadas do aluno</strong>
+              <p>
+                Os profissionais vinculados a este aluno acompanham e constroem
+                a mesma trilha.
+              </p>
+            </div>
+            <div
+              id="colab-autores"
+              class="colab-autores"
+              aria-label="Profissionais que criaram metas"
+            ></div>
+          </section>
+          <div class="filtros-colab">
+            <div class="campo">
+              <input id="busca-metas" type="search" placeholder=" " /><label
+                for="busca-metas"
+                >Buscar metas ou profissionais</label
+              >
+            </div>
+            <div class="campo-selecao">
+              <label for="filtro-status">Situação</label
+              ><select id="filtro-status">
+                <option value="todas">Todas as metas</option>
+                <option value="andamento">Em andamento</option>
+                <option value="concluidas">Concluídas</option>
+              </select>
+            </div>
+            <div class="campo-selecao">
+              <label for="filtro-autor">Criada por</label
+              ><select id="filtro-autor">
+                <option value="todos">Toda a equipe</option>
+              </select>
+            </div>
+            <button
+              id="limpar-filtros"
+              class="botao-meta secundario"
+              type="button"
+            >
+              Limpar filtros
+            </button>
+          </div>
+          <details id="nova-meta-area" class="nova-meta" hidden="">
+            <summary>Criar uma meta</summary>
+            <form id="nova-meta-form" class="form-nova-meta">
+              <div class="form-introducao">
+                <h3>Um novo passo para o aluno</h3>
+                <p>
+                  Defina o objetivo e, se fizer sentido, conecte-o a metas
+                  anteriores.
+                </p>
+              </div>
+              <div class="campos-meta">
+                <div class="campo">
+                  <input
+                    id="meta-titulo"
+                    name="titulo"
+                    maxlength="150"
+                    placeholder=" "
+                    required=""
+                  /><label for="meta-titulo">Título da meta *</label>
+                </div>
+                <div class="campo">
+                  <input
+                    id="meta-area"
+                    name="area"
+                    list="areas-aprendizagem-sugeridas"
+                    maxlength="100"
+                    placeholder=" "
+                    required=""
+                  /><label for="meta-area">Área de aprendizagem *</label>
+                  <datalist id="areas-aprendizagem-sugeridas"></datalist>
+                </div>
+                <div class="campo campo-largo">
+                  <textarea
+                    id="meta-descricao"
+                    name="descricao"
+                    rows="4"
+                    placeholder=" "
+                    required=""
+                  ></textarea
+                  ><label for="meta-descricao">Descreva o objetivo *</label>
+                </div>
+                <fieldset class="campo-largo anteriores-meta">
+                  <legend id="anteriores-titulo"
+                    >Conectar a metas anteriores <span>Opcional</span></legend
+                  >
+                  <p id="anteriores-ajuda">
+                    Marque uma ou várias metas que vêm antes desta. Cada opção
+                    marcada será uma conexão salva no servidor.
+                  </p>
+                  <div class="campo">
+                    <input id="busca-anteriores" type="search" placeholder=" " />
+                    <label for="busca-anteriores">Buscar metas anteriores</label>
+                  </div>
+                  <div
+                    id="meta-anteriores"
+                    class="lista-conectar"
+                    role="group"
+                    aria-labelledby="anteriores-titulo"
+                    aria-describedby="anteriores-ajuda"
+                  ></div>
+                  <p id="anteriores-vazio" hidden=""></p>
+                  <p id="anteriores-contagem" role="status" aria-live="polite"></p>
+                </fieldset>
+              </div>
+              <div class="form-meta-acoes">
+                <button
+                  id="cancelar-nova-meta"
+                  class="botao-meta secundario"
+                  type="button"
+                >
+                  Cancelar</button
+                ><button class="botao-meta" type="submit">Salvar meta</button>
+              </div>
+            </form>
+          </details>
+          <div class="mapa-ferramentas">
+            <div class="legenda-mapa">
+              <span><i class="ponto-meta"></i> Em andamento</span
+              ><span><i class="ponto-meta concluida"></i> Concluída</span>
+            </div>
+            <div class="areas-filtro" id="areas-filtro">
+              <button
+                class="botao-meta secundario"
+                id="btn-areas"
+                type="button"
+                aria-expanded="false"
+                aria-controls="areas-menu"
+              >
+                Filtrar por área <span aria-hidden="true">⌄</span>
+              </button>
+              <div class="areas-menu" id="areas-menu" hidden=""></div>
+            </div>
+          </div>
+          <p id="areas-resumo" class="resumo-areas">Todas as áreas</p>
+
+          <div id="foco-meta-aviso" class="foco-meta-aviso" hidden="">
+            <span id="foco-meta-texto"></span
+            ><button id="sair-foco-meta" type="button">
+              Ver toda a trilha ×
+            </button>
+          </div>
+          <div class="navegacao-mapa">
+            <div
+              class="modo-mapa"
+              role="group"
+              aria-label="Modo de visualização"
+            >
+              <button id="modo-mapa" type="button" aria-pressed="true">
+                Mapa de conexões</button
+              ><button id="modo-lista" type="button" aria-pressed="false">
+                Lista de metas
+              </button>
+            </div>
+            <div
+              id="zoom-ferramentas"
+              class="zoom-ferramentas"
+              role="group"
+              aria-label="Zoom do mapa"
+            >
+              <button id="zoom-menos" type="button" aria-label="Diminuir zoom">
+                −</button
+              ><output id="zoom-valor" aria-live="polite">100%</output
+              ><button id="zoom-mais" type="button" aria-label="Aumentar zoom">
+                +</button
+              ><button id="zoom-ajustar" type="button">Ajustar</button
+              ><button id="zoom-reset" type="button">100%</button>
+            </div>
+          </div>
+          <div
+            class="metas"
+            id="metas-area"
+            role="region"
+            aria-label="Mapa de metas; role para explorar as conexões"
+            tabindex="0"
+          >
+            <div id="metas-superficie">
+              <div class="metas-canvas" id="metas-canvas">
+                <svg class="metas-linhas" id="metas-linhas" aria-hidden="true">
+                  <defs>
+                    <marker
+                      id="seta"
+                      viewBox="0 0 10 10"
+                      refX="9"
+                      refY="5"
+                      markerWidth="7"
+                      markerHeight="7"
+                      orient="auto"
+                    >
+                      <path d="M0 0 L10 5 L0 10 z" fill="currentColor"></path>
+                    </marker>
+                  </defs>
+                </svg>
+                <div class="metas-vazio" id="metas-vazio" hidden="">
+                  <span aria-hidden="true">↗</span>
+                  <h3>Nenhuma meta para mostrar</h3>
+                  <p id="metas-vazio-texto">
+                    Adicione uma meta para começar a acompanhar a aprendizagem.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="mapa-rodape">
+            <span>As setas ligam metas. Linhas pontilhadas indicam metas ocultas pelos filtros.</span
+            ><span
+              >Role o mapa para explorar
+              <span aria-hidden="true">↔</span></span
+            >
+          </footer>
+        </section>
+        <p class="assinatura-metas">
+          Um passo de cada vez. Cada conquista conta.
+        </p>
+      </div>
+    </main>
+    <div class="overlay" id="overlay-meta" hidden="">
+      <div
+        class="modal meta-expandida"
+        id="meta-expandida"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="meta-exp-titulo"
+      >
+        <button
+          class="btn btn-fechar"
+          id="fechar-meta"
+          type="button"
+          aria-label="Fechar meta"
+        >
+          ×
+        </button>
+        <div class="meta-exp-corpo">
+          <p class="sobretitulo">OBJETIVO DE APRENDIZAGEM</p>
+          <div class="titulo-meta">
+            <span id="meta-exp-area" class="area-meta"></span>
+            <h2 id="meta-exp-titulo"></h2>
+          </div>
+          <p id="meta-autoria" class="meta-autoria"></p>
+          <div class="abas-meta" role="tablist" aria-label="Detalhes da meta">
+            <button
+              id="aba-visao"
+              role="tab"
+              type="button"
+              aria-selected="true"
+              aria-controls="meta-painel-visao"
+            >
+              Acompanhamento</button
+            ><button
+              id="aba-conexoes"
+              role="tab"
+              type="button"
+              aria-selected="false"
+              aria-controls="meta-painel-conexoes"
+            >
+              Conexões</button
+            ><button
+              id="aba-editar"
+              role="tab"
+              type="button"
+              aria-selected="false"
+              aria-controls="meta-painel-editar"
+              hidden=""
+            >
+              Editar meta
+            </button>
+          </div>
+          <section
+            id="meta-painel-visao"
+            role="tabpanel"
+            aria-labelledby="aba-visao"
+          >
+            <div class="meta-exp-descricao" id="meta-exp-descricao"></div>
+            <p id="meta-erro" class="api-mensagem" role="alert" hidden=""></p>
+            <div class="meta-exp-acoes">
+              <button
+                class="btn botao-meta"
+                id="btn-add-postagem"
+                type="button"
+              >
+                + Adicionar postagem</button
+              ><button
+                class="btn botao-meta secundario"
+                id="btn-concluir"
+                type="button"
+              >
+                Marcar como concluída
+              </button><button
+                class="btn botao-meta botao-excluir-meta"
+                id="btn-excluir-meta"
+                type="button"
+                hidden=""
+              >
+                Excluir meta
+              </button>
+            </div>
+            <div class="registros-cabecalho">
+              <h3>Registros e evolução</h3>
+              <p>O acompanhamento dessa meta, em cada encontro.</p>
+            </div>
+            <div class="lista-postagens" id="lista-postagens"></div>
+            <p class="postagens-vazio" id="postagens-vazio" hidden="">
+              Nenhuma postagem ainda. Os novos registros aparecerão aqui.
+            </p>
+          </section>
+          <section
+            id="meta-painel-conexoes"
+            role="tabpanel"
+            aria-labelledby="aba-conexoes"
+            hidden=""
+          >
+            <div class="cabecalho-conexoes">
+              <h3>Uma meta, vários caminhos</h3>
+              <p>
+                Conecte objetivos de áreas e profissionais diferentes na trilha
+                deste aluno.
+              </p>
+            </div>
+            <div class="acoes-conexoes">
+              <button
+                id="maximizar-conexoes"
+                class="botao-meta secundario"
+                type="button"
+                aria-pressed="false"
+              >
+                Maximizar conexões</button
+              ><button
+                id="editar-conexoes"
+                class="botao-meta"
+                type="button"
+                hidden=""
+              >
+                Gerenciar conexões</button
+              ><button
+                id="ver-conexoes-mapa"
+                class="botao-meta secundario"
+                type="button"
+              >
+                Focar no mapa
+              </button>
+            </div>
+            <div id="conexoes-resumo" class="conexoes-resumo"></div>
+            <form id="form-conexoes" hidden="">
+              <p class="nota-conexoes">
+                Marque quantas metas precisar. As setas apontam das anteriores
+                para as seguintes.
+              </p>
+              <div class="campo">
+                <input
+                  id="busca-conexoes"
+                  type="search"
+                  placeholder=" "
+                /><label for="busca-conexoes"
+                  >Encontrar uma meta existente</label
+                >
+              </div>
+              <div class="seletores-conexoes">
+                <fieldset>
+                  <legend>Vêm antes desta meta</legend>
+                  <p>Objetivos que preparam este passo.</p>
+                  <div id="conexoes-anteriores" class="lista-conectar"></div>
+                </fieldset>
+                <fieldset>
+                  <legend>Vêm depois desta meta</legend>
+                  <p>Objetivos que se apoiam neste passo.</p>
+                  <div id="conexoes-seguintes" class="lista-conectar"></div>
+                </fieldset>
+              </div>
+              <p id="conexoes-previa" class="conexoes-previa" role="status"></p>
+              <p
+                id="conexoes-erro"
+                class="api-mensagem"
+                role="alert"
+                hidden=""
+              ></p>
+              <div class="form-meta-acoes">
+                <button
+                  id="cancelar-conexoes"
+                  class="botao-meta secundario"
+                  type="button"
+                >
+                  Cancelar</button
+                ><button id="salvar-conexoes" class="botao-meta" type="submit">
+                  Salvar conexões
+                </button>
+              </div>
+            </form>
+          </section>
+          <section
+            id="meta-painel-editar"
+            role="tabpanel"
+            aria-labelledby="aba-editar"
+            hidden=""
+          >
+            <form id="form-editar-meta">
+              <p class="nota-conexoes">
+                A equipe poderá acompanhar a atualização. A autoria original
+                será preservada.
+              </p>
+              <div class="campos-meta">
+                <div class="campo">
+                  <input
+                    id="editar-meta-titulo"
+                    maxlength="200"
+                    placeholder=" "
+                    required=""
+                  /><label for="editar-meta-titulo">Título *</label>
+                </div>
+                <div class="campo">
+                  <input
+                    id="editar-meta-area"
+                    maxlength="200"
+                    placeholder=" "
+                    required=""
+                  /><label for="editar-meta-area">Área *</label>
+                </div>
+                <div class="campo campo-largo">
+                  <textarea
+                    id="editar-meta-descricao"
+                    rows="6"
+                    placeholder=" "
+                    required=""
+                  ></textarea
+                  ><label for="editar-meta-descricao"
+                    >Descrição do objetivo *</label
+                  >
+                </div>
+              </div>
+              <p
+                id="edicao-meta-erro"
+                class="api-mensagem"
+                role="alert"
+                hidden=""
+              ></p>
+              <button
+                id="recarregar-edicao-meta"
+                class="botao-meta secundario"
+                type="button"
+                hidden=""
+              >
+                Recarregar versão do servidor
+              </button>
+              <div class="form-meta-acoes">
+                <button
+                  id="cancelar-edicao-meta"
+                  class="botao-meta secundario"
+                  type="button"
+                >
+                  Cancelar</button
+                ><button
+                  id="salvar-edicao-meta"
+                  class="botao-meta"
+                  type="submit"
+                >
+                  Salvar alterações
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="overlay overlay-form" id="overlay-form" hidden="">
+      <form
+        class="modal form-postagem"
+        id="form-postagem"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="form-contexto"
+      >
+        <button
+          class="btn btn-fechar"
+          id="fechar-form"
+          type="button"
+          aria-label="Fechar formulário"
+        >
+          ×
+        </button>
+        <p class="sobretitulo">ACOMPANHAMENTO DA META</p>
+        <h2 class="form-contexto" id="form-contexto">Nova postagem</h2>
+        <div class="campo">
+          <input
+            id="post-titulo"
+            name="titulo"
+            placeholder=" "
+            maxlength="150"
+            required=""
+          /><label for="post-titulo">Título da postagem *</label>
+        </div>
+        <div class="form-linha">
+          <div class="campo-selecao">
+            <label for="post-tipo">Tipo de registro</label
+            ><select id="post-tipo" name="tipo" required=""></select>
+          </div>
+          <div class="campo-selecao">
+            <label for="post-visibilidade">Quem pode ver</label
+            ><select id="post-visibilidade">
+              <option value="TODOS">Todos os envolvidos</option>
+              <option value="PROFISSIONAIS">Somente profissionais</option>
+            </select>
+          </div>
+        </div>
+        <div class="campo">
+          <textarea
+            id="post-conteudo"
+            name="conteudo"
+            rows="5"
+            placeholder=" "
+            required=""
+          ></textarea
+          ><label for="post-conteudo">Conteúdo do registro *</label>
+        </div>
+        <ul class="lista-anexos" id="lista-anexos"></ul>
+        <p class="form-erro" id="form-erro" role="alert"></p>
+        <div class="form-acoes">
+          <input type="file" id="input-anexos" multiple="" hidden="" /><button
+            class="btn botao-meta secundario"
+            id="btn-anexar"
+            type="button"
+          >
+            Anexar arquivo</button
+          ><button class="btn botao-meta" id="btn-enviar" type="submit">
+            Publicar registro
+          </button>
+        </div>
+        <p class="ajuda-anexo">Até 10 MB por arquivo e 11 MB no total.</p>
+      </form>
+    </div>
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/grafo-metas.js"></script>
+    <script src="../assets/js/metas.js"></script>
+  </body>
+</html>

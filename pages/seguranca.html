@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Segurança da conta | OficinaAprender+</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/perfil.css">
+  <link rel="stylesheet" href="../assets/css/gestao.css">
+  <link rel="stylesheet" href="../assets/css/seguranca.css">
+  <script src="../assets/js/config.js" defer></script>
+  <script src="../assets/js/utils.js" defer></script>
+  <script src="../assets/js/seguranca.js" defer></script>
+  <script src="../assets/js/tema.js" defer></script>
+</head>
+<body>
+<main class="pagina-perfil pagina-seguranca">
+  <div class="barra-superior"><a class="voltar" href="perfil.html">← Voltar ao perfil</a><a class="marca" href="dashboard.html">Oficina<span>Aprender+</span></a></div>
+  <header class="cabecalho-pagina"><p class="sobretitulo">PROTEJA SEU ACESSO</p><h1>Verificação em duas etapas</h1><p>Uma confirmação pelo celular para manter sua conta profissional protegida.</p></header>
+  <p id="mfa-mensagem" class="api-mensagem" role="status" aria-live="polite">Carregando a segurança da conta…</p>
+  <article class="cartao">
+    <header class="cabecalho-cartao"><h2 id="mfa-situacao">Consultando proteção…</h2><p id="mfa-explicacao">Confira a configuração da sua conta.</p></header>
+    <div id="mfa-configuracao" hidden>
+      <form id="mfa-preparar" class="gestao-form" hidden>
+        <p>Abra um aplicativo autenticador compatível com códigos temporários. Você poderá cadastrar a chave manualmente.</p>
+        <label for="mfa-senha">Sua senha atual</label><input id="mfa-senha" type="password" autocomplete="current-password" required>
+        <button type="submit">Começar configuração</button>
+      </form>
+      <section id="mfa-pendente" hidden aria-labelledby="mfa-pendente-titulo">
+        <h3 id="mfa-pendente-titulo">Adicione a conta ao autenticador</h3>
+        <p>No aplicativo, escolha adicionar uma conta com chave de configuração e código baseado em tempo. Copie a chave abaixo:</p>
+        <code id="mfa-chave" class="segredo-mfa"></code>
+        <p><a id="mfa-uri">Abrir no autenticador deste dispositivo</a></p>
+        <p id="mfa-prazo"></p>
+        <p>Não compartilhe essa chave. A proteção será ativada somente depois da confirmação.</p>
+        <form id="mfa-confirmar" class="gestao-form">
+          <label for="mfa-codigo">Código de seis dígitos do autenticador</label><input id="mfa-codigo" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required>
+          <button type="submit">Confirmar e ativar proteção</button><button id="mfa-cancelar" type="button">Cancelar configuração</button>
+        </form>
+      </section>
+      <form id="mfa-gerenciar" class="gestao-form" hidden>
+        <p id="mfa-reservas"></p>
+        <p>Para alterar a proteção, confirme sua senha e um código ainda não utilizado. Se acabou de usar um código, aguarde o próximo no aplicativo.</p>
+        <label for="mfa-senha-prova">Sua senha atual</label><input id="mfa-senha-prova" type="password" autocomplete="current-password" required>
+        <label for="mfa-codigo-prova">Código do autenticador ou código de recuperação</label><input id="mfa-codigo-prova" type="text" autocomplete="one-time-code" maxlength="32" spellcheck="false" required>
+        <div class="acoes-mfa"><button type="submit" name="acao" value="recuperacao">Gerar novos códigos de recuperação</button><button type="submit" name="acao" value="desativar" class="acao-desativar">Desativar verificação em duas etapas</button></div>
+      </form>
+    </div>
+  </article>
+  <section id="mfa-recuperacao" class="cartao" hidden aria-labelledby="mfa-recuperacao-titulo">
+    <header class="cabecalho-cartao"><h2 id="mfa-recuperacao-titulo">Guarde seus códigos de recuperação</h2><p>Exibidos somente agora. Cada código funciona uma vez, junto da sua senha, caso você perca acesso ao autenticador.</p></header>
+    <ol id="mfa-codigos" class="codigos-mfa"></ol>
+    <p>Guarde-os em um local seguro, separado do celular. Se gerou novos códigos, os anteriores deixaram de funcionar.</p>
+    <div class="acoes-mfa"><button id="mfa-baixar" type="button">Baixar códigos</button><button id="mfa-guardei" type="button">Já guardei, ocultar códigos</button></div>
+  </section>
+</main>
+</body>
+</html>

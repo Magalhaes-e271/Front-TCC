@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | OficinaAprender+</title>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+
+</head>
+
+<body>
+<div class="dashboard-card">
+
+    <header class="card-header">
+        <button
+                id="btn-barra-lateral"
+                class="botao-icone"
+                type="button"
+                aria-label="Abrir ou fechar menu"
+                aria-controls="menu-lateral"
+                title="Abrir ou fechar menu"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="16" rx="3"></rect>
+                <path d="M9 4v16"></path>
+            </svg>
+        </button>
+
+        <a class="marca" href="dashboard.html">
+            Oficina<span>Aprender+</span>
+        </a>
+
+        <span class="selo">Seu espaço de acompanhamento</span>
+    </header>
+
+    <div class="dashboard-body">
+
+        <aside
+                class="nav-bar"
+                id="menu-lateral"
+                aria-label="Menu principal"
+        >
+            <div class="nav-header">
+                <img
+                        id="user-img"
+                        class="user-img"
+                        src="../assets/icons/user-icon.png"
+                        alt="Foto do seu perfil"
+                        width="64"
+                        height="64"
+                >
+
+                <div class="perfil-texto">
+                    <span class="perfil-legenda">BEM-VINDO(A)</span>
+                    <h2 id="user-name">Seu perfil</h2>
+                    <p id="user-formacao">OficinaAprender+</p>
+                </div>
+            </div>
+
+            <nav class="nav-btns" aria-label="Páginas do painel">
+                <button
+                        id="btn-pacientes"
+                        class="nav-btn-active"
+                        type="button"
+                        aria-current="page"
+                        title="Pacientes"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="3" width="7" height="7" rx="2"></rect>
+                        <rect x="14" y="3" width="7" height="7" rx="2"></rect>
+                        <rect x="3" y="14" width="7" height="7" rx="2"></rect>
+                        <rect x="14" y="14" width="7" height="7" rx="2"></rect>
+                    </svg>
+
+                    <span class="btn-text">Pacientes</span>
+                </button>
+
+                <button
+                        id="btn-profissionais"
+                        type="button"
+                        title="Profissionais"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="9" cy="8" r="3"></circle>
+                        <path
+                                d="M3 21v-3a6 6 0 0 1 12 0v3
+                   M17 5a3 3 0 0 1 0 6
+                   M21 21v-3a6 6 0 0 0-4-5"
+                        ></path>
+                    </svg>
+
+                    <span class="btn-text">Profissionais</span>
+                </button>
+
+                <button id="btn-agenda" type="button" title="Agenda">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="16" rx="3"></rect>
+                        <path d="M7 3v4M17 3v4M3 11h18M8 15h2M14 15h2"></path>
+                    </svg>
+
+                    <span class="btn-text">Agenda</span>
+                </button>
+            </nav>
+
+            <div class="nav-footer">
+                <button
+                        id="btn-user-config"
+                        type="button"
+                        title="Editar perfil"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 21v-2a8 8 0 0 1 16 0v2"></path>
+                    </svg>
+
+                    <span class="btn-text">Editar meu perfil</span>
+                </button>
+
+                <button
+                        id="btn-sair"
+                        type="button"
+                        title="Sair da conta"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                                d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4
+                   M13 8l4 4-4 4M7 12h14"
+                        ></path>
+                    </svg>
+
+                    <span class="btn-text">Sair da conta</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content dashboard-page">
+
+            <header class="dashboard-header">
+                <div class="introducao">
+                    <p class="sobretitulo">SEU PAINEL</p>
+
+                    <h1>Seus pacientes</h1>
+
+                    <p class="subtitulo">
+                        Acompanhe cada evolução e mantenha o cuidado por perto.
+                    </p>
+                </div>
+
+                <button
+                        class="add-patient-button btn-primario"
+                        type="button"
+                        onclick="location.href='criar_paciente.html'"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+
+                    Novo paciente
+                </button>
+            </header>
+
+            <section
+                    class="painel-pacientes"
+                    aria-labelledby="titulo-pacientes"
+            >
+                <div class="cabecalho-lista">
+                    <div>
+                        <h2 id="titulo-pacientes">Acompanhamento</h2>
+
+                        <p>
+                            Perfis e progresso das atividades em um só lugar.
+                        </p>
+                    </div>
+
+                    <button
+                            id="recarregar"
+                            class="btn-secundario"
+                            type="button"
+                    >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                    d="M20 7v5h-5M4 17v-5h5
+                     M6 7a7 7 0 0 1 12-1l2 3
+                     M4 15l2 3a7 7 0 0 0 12-1"
+                            ></path>
+                        </svg>
+
+                        Atualizar
+                    </button>
+                </div>
+
+                <p
+                        id="pagina-erro"
+                        class="api-mensagem"
+                        role="status"
+                        aria-live="polite"
+                        hidden
+                ></p>
+
+                <div
+                        id="pacientes-lista"
+                        class="patients-grid"
+                        aria-label="Pacientes cadastrados"
+                ></div>
+            </section>
+
+            <footer class="painel-rodape">
+                <span>Um passo de cada vez. Cada conquista conta.</span>
+
+                <a href="Profissionais.html">
+                    Ver colegas <span aria-hidden="true">→</span>
+                </a>
+            </footer>
+        </main>
+
+    </div>
+</div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/utils.js"></script>
+<script src="../assets/js/navbar.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+<script src="../assets/js/tema.js"></script>
+</body>
+
+</html>

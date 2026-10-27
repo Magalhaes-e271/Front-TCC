@@ -1,0 +1,12 @@
+.pagina-seguranca { max-width: 920px; }
+.pagina-seguranca .cartao { margin: 22px 0; padding: 24px; }
+.pagina-seguranca p { line-height: 1.7; }
+.pagina-seguranca input { max-width: 100%; box-sizing: border-box; }
+.segredo-mfa { display: block; padding: 18px; border: 1px solid var(--borda, #dce3f2); border-radius: 12px; overflow-wrap: anywhere; user-select: all; font-size: 17px; letter-spacing: 2px; }
+.codigos-mfa { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 28px; padding-left: 22px; }
+.codigos-mfa li { font-family: monospace; font-size: 13px; overflow-wrap: anywhere; }
+.acoes-mfa { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.pagina-seguranca button { border: 1px solid var(--borda, #dce3f2); background: var(--azul, #3e55ea); color: #fff; padding: 12px 18px; border-radius: 10px; font: inherit; cursor: pointer; }
+.pagina-seguranca button:disabled { opacity: .6; cursor: wait; }
+.pagina-seguranca .acao-desativar { background: transparent; color: #c63c44; }
+@media (max-width: 560px) { .codigos-mfa { grid-template-columns: 1fr; } .pagina-seguranca .cartao { padding: 18px; } .acoes-mfa > button { width: 100%; } }

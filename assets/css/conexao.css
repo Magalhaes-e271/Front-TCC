@@ -1,0 +1,113 @@
+.conexao-servidor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    width: fit-content;
+    max-width: min(100%, 900px);
+    box-sizing: border-box;
+
+    margin: 12px auto;
+    padding: 7px 12px;
+
+    border: 1px solid #fca5a5;
+    border-radius: 10px;
+
+    background: #fee2e2;
+    color: #b91c1c;
+
+    font-size: 13px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* Não conectado: vermelho. */
+.conexao-servidor[data-estado="inicial"],
+.conexao-servidor[data-estado="erro"] {
+    background: #fee2e2;
+    border-color: #fca5a5;
+    color: #b91c1c;
+}
+
+/* Conectando: amarelo. */
+.conexao-servidor[data-estado="conectando"] {
+    background: #fef3c7;
+    border-color: #fcd34d;
+    color: #92400e;
+}
+
+/* Conectado: verde. */
+.conexao-servidor[data-estado="conectado"] {
+    background: #dcfce7;
+    border-color: #86efac;
+    color: #166534;
+}
+
+.conexao-servidor::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.conexao-servidor[data-estado="conectando"]::before {
+    width: 11px;
+    height: 11px;
+    box-sizing: border-box;
+
+    background: transparent;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+
+    animation: conexao-girar 1s linear infinite;
+}
+
+.conexao-servidor p {
+    margin: 0;
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.conexao-servidor button {
+    padding: 4px 8px;
+
+    border: 1px solid currentColor;
+    border-radius: 6px;
+
+    background: transparent;
+    color: inherit;
+
+    font: inherit;
+    cursor: pointer;
+}
+
+.conexao-servidor button:hover {
+    background: rgb(0 0 0 / 5%);
+}
+
+.conexao-servidor button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+.conexao-servidor [hidden] {
+    display: none !important;
+}
+
+@keyframes conexao-girar {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .conexao-servidor[data-estado="conectando"]::before {
+        animation: none;
+    }
+}

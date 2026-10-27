@@ -1,0 +1,319 @@
+/* Posicionamento da tela */
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+}
+
+.login-conteudo {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+}
+
+/* Apresentação lateral */
+
+.apresentacao {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-width: 0;
+  padding: 44px 36px;
+
+  border-right: 1px solid var(--borda);
+  background: #f7faff;
+}
+
+.icone-apresentacao {
+  display: grid;
+  place-items: center;
+
+  width: 80px;
+  height: 80px;
+  margin-bottom: 34px;
+
+  border: 1px solid #d8e2ff;
+  border-radius: 24px;
+  background: #eaf0ff;
+  color: var(--azul);
+}
+
+.icone-apresentacao svg {
+  width: 48px;
+  height: 48px;
+}
+
+.login-card .sobretitulo {
+  font-size: 10px;
+  letter-spacing: 1.8px;
+}
+
+.apresentacao h2 {
+  margin: 0 0 20px;
+
+  font-family: var(--fonte-titulo);
+  color: var(--azul);
+  font-size: clamp(30px, 3.5vw, 40px);
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.texto-apresentacao {
+  margin: 0;
+  color: var(--suave);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.destaque-apresentacao {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  margin-top: 30px;
+  padding: 18px;
+
+  border: 1px solid #dce5f7;
+  border-radius: 16px;
+  background: var(--branco);
+}
+
+.simbolo-destaque {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 9px;
+  background: #eef2ff;
+  color: var(--azul);
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.destaque-apresentacao p {
+  margin: 0;
+  color: #526077;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.assinatura {
+  margin-top: auto;
+  padding-top: 36px;
+
+  color: #8492a8;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Área do formulário */
+
+.area-login {
+  min-width: 0;
+  padding: 44px 38px 28px;
+}
+
+.introducao-login {
+  margin-bottom: 30px;
+}
+
+.introducao-login h1 {
+  margin-bottom: 14px;
+  font-size: clamp(30px, 3.5vw, 38px);
+  line-height: 1.2;
+}
+
+.introducao-login > p:last-child {
+  margin: 0;
+  color: var(--suave);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+#form-login {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+#form-login .campo input {
+  min-height: 62px;
+  padding-top: 26px;
+}
+
+#form-login .campo input:placeholder-shown:not(:focus) + label {
+  top: 22px;
+}
+
+#form-login .toggle-senha {
+  top: 11px;
+}
+
+.aviso-capslock {
+  margin: -6px 2px 0;
+  color: #946514;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.login-mensagem {
+  margin: 0;
+  padding: 13px 15px;
+  font-size: 12px;
+}
+
+.btn-entrar {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 4px;
+  padding: 14px 18px;
+  line-height: 1.5;
+}
+
+.btn-entrar:disabled {
+  opacity: 0.7;
+}
+
+/* Estado de carregamento */
+
+.spinner {
+  display: none;
+
+  width: 17px;
+  height: 17px;
+
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: var(--branco);
+  border-radius: 50%;
+}
+
+#form-login[aria-busy="true"] .spinner {
+  display: block;
+  animation: girar 0.8s linear infinite;
+}
+
+#form-login[aria-busy="true"] .btn-entrar > svg {
+  display: none;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Convite para cadastro */
+
+.convite-cadastro {
+  margin-top: 28px;
+  padding-top: 24px;
+
+  border-top: 1px solid var(--borda);
+  text-align: center;
+}
+
+.convite-cadastro p {
+  margin: 0 0 14px;
+  color: var(--suave);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.btn-cadastro {
+  display: flex;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 16px;
+  line-height: 1.5;
+}
+
+.rodape-login {
+  margin: 28px 0 0;
+
+  color: #8492a8;
+  font-size: 10px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* Responsividade */
+
+@media (max-width: 800px) {
+  .apresentacao {
+    padding: 36px 26px;
+  }
+
+  .area-login {
+    padding: 36px 26px 26px;
+  }
+
+  .login-card .selo {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .login-card {
+    max-width: 500px;
+  }
+
+  .login-conteudo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .apresentacao {
+    padding: 26px 24px;
+
+    border-right: 0;
+    border-bottom: 1px solid var(--borda);
+  }
+
+  .icone-apresentacao {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 18px;
+    border-radius: 16px;
+  }
+
+  .icone-apresentacao svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  .apresentacao h2 {
+    margin-bottom: 12px;
+    font-size: 29px;
+  }
+
+  .texto-apresentacao {
+    font-size: 12px;
+  }
+
+  .destaque-apresentacao,
+  .assinatura {
+    display: none;
+  }
+
+  .area-login {
+    padding: 28px 24px 24px;
+  }
+
+  .introducao-login h1 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 380px) {
+  .apresentacao,
+  .area-login {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}

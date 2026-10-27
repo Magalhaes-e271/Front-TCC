@@ -1,0 +1,41 @@
+# Oficina Aprender — site
+
+Interface em HTML, CSS e JavaScript integrada à API da pasta `../servidor`. Inclui cadastro de alunos em três seções na mesma página, metas colaborativas com várias dependências e login com segundo fator opcional. Todos os recursos visuais são locais; a sessão usa o token Bearer recebido da API.
+
+## Executar
+
+Siga `../LEIA-ME.md` para iniciar o conjunto com Docker. O endereço padrão é http://localhost:8081. O site usa `/api` na mesma origem, e o Nginx encaminha as operações para a API local.
+
+Para desenvolvimento com a API já executando na porta 8080:
+
+```sh
+python servir.py
+```
+
+Abra http://127.0.0.1:8081. `--port` e `--api-port` permitem alterar as portas. A entrada é `index.html`; não abra esse arquivo diretamente e não use um servidor estático sem o proxy `/api`.
+
+Para API local em 8181, use `python servir.py --api-port 8181`. Se preferir o servidor estático do IntelliJ em 63342, configure a URL direta da API em `assets/js/config.js` e permita essa origem no CORS do backend, conforme `../documentacao/DESENVOLVIMENTO.md`.
+
+## Fluxos
+
+- Cadastro profissional com foto, login e sessão.
+- Painel de pacientes vinculados, cadastro, edição, equipe e convites.
+- Metas com dependências, conclusão e reabertura.
+- Registros com visibilidade, respostas e anexos autenticados.
+- Agenda de atendimentos com criação e cancelamento.
+- Perfil, horários, foto e alteração de senha.
+- Ativação do paciente por link de uso único.
+- Relatório com impressão e salvamento em PDF pelo navegador.
+
+A equipe recebe acesso após aceitar o convite. O paciente vê os registros compartilhados com ele. As permissões são validadas pela API em cada operação.
+
+## Testar
+
+Com Node.js 18 ou superior:
+
+```sh
+npm ci
+npm test
+```
+
+Os 64 testes verificam sessão, erros, cadastro multipart em seções, validação, duplicidade de envio, edição, foto, senha, equipe, metas colaborativas e grafo, ativação, relatório, segundo fator e referências locais. O DOM é executado com jsdom. Consulte `../documentacao/TESTES.md` para o resultado desta entrega.
